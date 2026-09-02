@@ -4,6 +4,35 @@
 
 > 规范定义在 [`SKILL.md`](SKILL.md)；本 README 是给人读的导览。二者冲突时以 `SKILL.md` 为准。
 
+## 解决什么痛点
+
+在真实代码库里做多步骤 agent 工作,翻车往往不是逻辑错,而是:范围悄悄膨胀、上下文丢失/过时、并行写静默冲突、"完成"未经证据验证、状态没有唯一负责人——跨会话/跨平台(Codex↔Claude)尤甚。本 skill 用**单一控制 agent + ledger(账本)+ 冻结契约 + 证据门验收**,把"分解 → 委派 → 集成"钉成可复现、可审计的流程。
+
+## 环境与依赖
+
+- 纯**方法论 skill(只有 Markdown)**:无运行时、无 `pip`/`npm` 依赖、不装任何包。
+- 需要一个能读 skill / `SKILL.md` 的 **agent 宿主**:Claude Code(omp)、Codex,或任何你让它读 `SKILL.md` 的 agent。
+- 可选集成:[skills-radar](https://github.com/tomtdhzz/skills-radar) 作为"起点能力库"(见 `references/knowledge-base.md`)。
+
+## 安装
+
+```bash
+# 方式一:skills CLI(装到 ~/.claude/skills 或对应 agent 目录)
+npx skills add tomtdhzz/requirement-orchestrator -g -y
+
+# 方式二:手动 clone 后软链到你的 agent skills 目录
+git clone https://github.com/tomtdhzz/requirement-orchestrator.git
+ln -s "$PWD/requirement-orchestrator" ~/.claude/skills/requirement-orchestrator
+```
+或直接让你的 agent 读仓库里的 `SKILL.md`。
+
+## 使用
+
+- **触发**:对 agent 说"用 requirement-orchestrator 分析/编排这个需求……";当请求需要分解+委派+验证时它也会自动启用。
+- **选模式**:`analyze`(默认,只读蓝图)/ `diagnose` / `execute`(需你单独授权改代码)/ `challenge`。
+- **过程**:agent 先读 `SKILL.md`,按需加载 `references/*`;维护分阶段 TODO 与 ledger;`execute` 完成后按证据门验收。
+- 想看完整走一遍:`references/examples/feature-example.md`、`bug-example.md`。
+
 ## 何时用
 
 需求、功能、缺陷、服务变更或领域变更需要被拆分、委派给子 agent、并经验证与集成来管控时。典型触发：
