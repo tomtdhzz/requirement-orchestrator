@@ -1,0 +1,71 @@
+---
+name: requirement-orchestrator
+description: Use when a software requirement, feature, bug, service change, or domain change must be decomposed into bounded work, delegated to subagents, and controlled through verification and integration across Codex or Claude.
+---
+
+# Requirement Orchestrator
+
+Turn a software request into independently verifiable work while keeping one controlling agent responsible for scope, dependencies, evidence, and integration. This skill is an orchestrator, not a prompt generator.
+
+## Select a semantic mode
+
+- `analyze`: investigate the request and codebase, maintain the ledger, and produce an execution blueprint without modifying code. This is the default when implementation was not requested.
+- `diagnose`: reproduce and explain a reported failure, separating confirmed root cause, evidence, unknowns, and recommended repair paths. Diagnosis is the deliverable; do not modify code.
+- `execute`: dispatch bounded work, review returned results, and complete integration. Enter only when the user authorized implementation or execution.
+- `challenge`: test an existing requirement, decomposition, or design for omissions and risks without changing its confirmed product goal. See [references/challenge.md](references/challenge.md).
+
+These are skill-level semantic modes. They do not invoke or require a platform's native Plan Mode, `EnterPlanMode`, or mandatory Explore/Plan agents. Use native modes only when independently useful and compatible with the user's constraints.
+
+For a single-root-cause task with no delegation, use the control loop directly. Read [references/spec-driven.md](references/spec-driven.md) to shape the specification (requirements, acceptance scenarios, contracts). Read [references/context-grounding.md](references/context-grounding.md) before decomposing in an existing codebase. Read [references/decomposition.md](references/decomposition.md) when there is more than one candidate task, a service/domain boundary, a scheduling decision, or a build/deployment failure where repository state may be causal. Read [references/verification.md](references/verification.md) for acceptance-evidence standards. Read [references/ledger.md](references/ledger.md) when work has multiple tasks, agents, sessions, or platforms. Read [references/mutation.md](references/mutation.md) when execution rewrites, deletes, or fans a change across more than one existing artifact, or writes to an external system. Worked runs: [references/examples/feature-example.md](references/examples/feature-example.md) and [references/examples/bug-example.md](references/examples/bug-example.md).
+
+In `diagnose`, report the observed or reproduced failure, confirmed root cause and evidence, unverified items, impact, and recommended repair paths. Stop there unless the user separately authorizes `execute`.
+
+## Control loop
+
+1. Establish the goal, scope, acceptance criteria, constraints, and verified code facts. Ground unknowns first ([references/context-grounding.md](references/context-grounding.md)), then express the result as a specification — requirements, acceptance scenarios, and contracts ([references/spec-driven.md](references/spec-driven.md)). Investigate discoverable facts; ask the user only for decisions that materially affect scope, acceptance, or direction. Before decomposing, consult the capability knowledge base (see [references/knowledge-base.md](references/knowledge-base.md)) to pull the existing skills relevant to the goal and a same-domain comparison; prefer reusing or importing a known capability over researching from scratch, and record the chosen capabilities in the ledger.
+   - Read prior project lessons if present ([references/experience.md](references/experience.md)) and treat them as candidate facts to verify, not gospel.
+2. For a reported bug or failure, attempt a proportionate local reproduction before claiming a root cause. Compare the observed failure with the report. Until reproduced or supported by equivalent direct evidence, label root-cause statements as hypotheses and state what remains unverified.
+3. Choose one primary decomposition axis and create bounded tasks. Derive the shared contracts and freeze them before dependent or parallel work ([references/spec-driven.md](references/spec-driven.md)). Record dependencies and cross-task contracts explicitly. Mirror the resulting task groups into a phased TODO (see Progress surface).
+4. Keep exactly one controlling agent. The controller owns the ledger, dispatch decisions, review status, replanning, and final integration.
+5. Dispatch only tasks with a complete contract. Read [references/agent-contract.md](references/agent-contract.md) before the first dispatch. Before dispatching writes to any system beyond the local working tree, run the target-system preflight below.
+6. Accept a worker result into `review`, verify its evidence and boundaries against the acceptance-evidence standards ([references/verification.md](references/verification.md)), then mark it `completed` or return it with specific findings. For a bulk or external mutation, verify by independent read-back and a structural delta, not the tool's reported success count.
+7. Recompute affected dependencies after discoveries, failures, or scope changes. Rework the smallest affected branch.
+8. Declare the request complete only after task-level checks, cross-task contracts, and every acceptance scenario pass together; the end-to-end gate is defined in [references/verification.md](references/verification.md). On completion, append any qualifying project-specific lessons to the experience log ([references/experience.md](references/experience.md)).
+
+## Progress surface
+
+Keep a visible phased TODO in sync with the ledger so the user sees phases and step-level progress, not only prose. The ledger stays the detailed source of truth (dependencies, scopes, contracts, evidence); the phased TODO is its progress view.
+
+- Initialize one phase per decomposition group, then a final acceptance phase (for a bug flow, `对照` / `修复` / `验证`; for a feature flow, the feature groups followed by `全量验收`). Each item is one bounded task or verification step, phrased as an outcome in 5–10 words.
+- Drive it with the platform's native task list, never a hand-formatted tree. On Claude/omp use the `todo` tool: `init` with `list: [{phase, items}]`, then `start`/`done` per item. On Codex use its plan/update-plan mechanism.
+- Advance state from real progress: mark an item in progress when its task is dispatched, and done only after the controller records `completed` in the ledger. Phase counts (`N/M`) then track verified acceptance, not dispatch.
+- Keep the two consistent: one TODO item corresponds to exactly one ledger task or verification step. Recompute both together during replanning.
+- In `analyze` and `diagnose`, the phases are investigation or diagnosis steps and completing them modifies no code.
+
+## Target-system preflight
+
+Before dispatching writes to any system other than the local working tree — a wiki, ticketing system, database, or remote API — verify up front:
+
+- write permission and the exact scope the planned operations need, including delete or move if the plan requires them;
+- rate limits and whether failures are silent; choose safe concurrency and a retry or backoff;
+- that the result can be read back to verify.
+
+Discover a missing capability here, not mid-batch. If a required permission or scope is unavailable, treat it as a blocker: state exactly what is missing and the smallest grant that unblocks, and stop before any partial application.
+
+## Platform routing
+
+- For Codex, read [references/codex-adapter.md](references/codex-adapter.md).
+- For Claude, read [references/claude-adapter.md](references/claude-adapter.md).
+- When transferring control between them, write and confirm a handoff snapshot before the old controller stops dispatching.
+- Trellis is optional. Read [references/trellis-adapter.md](references/trellis-adapter.md) only when its escalation signals apply or the user requests it.
+
+## Non-negotiable boundaries
+
+- Do not treat task-tree position as execution dependency.
+- Do not let workers expand their write scope silently.
+- Do not run writing agents in parallel unless dependencies are resolved, write scopes do not overlap, shared contracts are frozen, and validation is independent.
+- A worker may submit work for review; only the controller may mark it completed.
+- When changing existing artifacts, do not clear-and-rewrite anything the task did not author and cannot regenerate; insert or patch in place, mark it with a rerun-safe marker, and verify by independent read-back.
+- Do not assert a derived value — a classification, label, summary, risk rating, or recommendation — beyond its verified source; mark an unverified derivation as such rather than fabricating a value.
+- Do not activate Trellis merely because `.trellis/` exists.
+- `analyze` and `diagnose` are read-only. A platform permission or native-plan approval does not authorize edits. Enter `execute` only after a separate user instruction authorizes implementation.

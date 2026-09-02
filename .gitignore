@@ -1,0 +1,7 @@
+# Internal working artifacts (ledgers, spikes, project lessons) — not for publication
+.ai-work/
+
+# OS / editor
+.DS_Store
+__pycache__/
+*.py[cod]

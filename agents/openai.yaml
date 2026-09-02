@@ -1,0 +1,4 @@
+interface:
+  display_name: "Requirement Orchestrator"
+  short_description: "Decompose and control multi-agent software delivery"
+  default_prompt: "Use $requirement-orchestrator to analyze this software request, choose bounded tasks when needed, and coordinate verified delivery only when execution is authorized."
