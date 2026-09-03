@@ -118,7 +118,7 @@ requirement-orchestrator/
     ├── verification.md           # 按类型的验收证据标准 + 控制方评审 + 复评收敛 + 防幻觉
     ├── challenge.md              # 压力测试：质量维度对抗 + 遗漏/风险清单
     ├── ledger.md                 # 需求 ledger：机器状态 YAML、状态机、出处纪律、交接快照
-    ├── agent-contract.md         # 子 agent 契约：派发必填字段、worker 义务、控制方评审
+    ├── agent-contract.md         # 子 agent 契约：派发必填字段、worker 义务、评审派发禁预判、控制方评审
     ├── mutation.md               # 安全批量改动：非破坏式、幂等、试点→批量、增量+回读校验
     ├── knowledge-base.md         # 起点先查能力库（可选集成，如 skills-radar）
     ├── experience.md             # 经验闭环：项目教训自动 append；skill 自身改进=opt-in（默认关）
