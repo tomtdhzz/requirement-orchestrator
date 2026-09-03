@@ -28,6 +28,7 @@ this project uses date-based entries (no semantic version tags yet).
 - `SKILL.md` — read-only boundary sharpened: the implementation intent of the triggering request does not carry into edits ("add login for me" authorizes analyzing that request, not editing in the same response); READMEs (zh/en) updated to match. (Adapted from `Fission-AI/OpenSpec` `workflows/propose.ts` planning boundary.)
 - `references/verification.md` — a green baseline is recorded in the ledger before the first dispatch **that changes code**, using the enforcement command bound during grounding; when it cannot be green, the already-failing checks are listed so later runs compare against that list rather than zero. `agent-contract.md` carries the pointer so the rule is read at dispatch time. (Adapted from `obra/superpowers` `using-git-worktrees`.)
 - `references/verification.md` — anti-fabrication extended to two hand-authored values: timestamps come from the system clock and progress counts (`N/M`, percentages) are derived by counting ledger states, never written by hand. (Adapted from `automazeio/ccpm` `conventions.md`.)
+- `references/agent-contract.md` — its `Controller review` list is explicitly the short form of `verification.md` (authoritative checklist, re-review protocol, evidence standards), so the two cannot drift into competing sources; README (zh) on-demand index updated to surface re-review, the baseline, and review dispatch.
 
 ## [2026-09-02] — Initial public release
 

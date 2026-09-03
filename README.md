@@ -133,8 +133,8 @@ requirement-orchestrator/
 - 塑造规格（需求/验收场景/契约）→ `spec-driven.md`；在既有代码库里分解前接地 → `context-grounding.md`
 - 非平凡构建的技术设计（架构/详设/备选/横切）→ `tech-design.md`；交付物布局与可发布项目 → `deliverables.md`
 - 多个候选任务 / 服务·领域边界 / 调度决策 / 疑似仓库状态诱发的构建失败 → `decomposition.md`
-- 验收证据标准 → `verification.md`；压力测试既有需求/设计 → `challenge.md`
-- 多任务、多 agent、跨会话或跨平台 → `ledger.md`；首次派发前 → `agent-contract.md`
+- 验收证据标准、复评收敛与绿基线 → `verification.md`；压力测试既有需求/设计 → `challenge.md`
+- 多任务、多 agent、跨会话或跨平台 → `ledger.md`；首次派发前、派发评审前 → `agent-contract.md`
 - 改写/删除/跨多个既有工件铺开变更，或写外部系统 → `mutation.md`
 - 起点先查已有能力（可选)→ `knowledge-base.md`；沉淀项目教训、或把经验回灌进 skill（opt-in，默认关）→ `experience.md`
 - 完整走一遍的范例 → `examples/`；具体平台 → 对应 `*-adapter.md`

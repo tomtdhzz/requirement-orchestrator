@@ -68,5 +68,7 @@ Check observable artifacts rather than trusting a success summary. Verify:
 - relevant tests or commands;
 - unresolved risks and unintended changes.
 
-The controller may make a small correction only when it does not change behavior, contract, or scope. Otherwise return the task to its worker with specific findings and re-run verification.
+The controller may make a small correction only when it does not change behavior, contract, or scope. Otherwise return the task to its worker with specific findings and re-run verification — a second pass verdicts the recorded findings rather than restarting the review.
+
+This list is the short form. [verification.md](verification.md) holds the authoritative review checklist, the re-review protocol, and the evidence standards; keep it as the single source rather than growing a second one here.
 
