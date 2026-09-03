@@ -2,7 +2,7 @@
 
 An acceptance scenario is met only with **observable evidence** from exercising the change,
 not a worker's success summary. This defines what counts as proof, per task type, and how
-the controller reviews it. It backs control-loop steps 6 and 8.
+the controller reviews it. It backs control-loop steps 5, 6, and 8.
 
 ## Evidence by task type
 
@@ -41,7 +41,7 @@ A worker submits `review`; only the controller records `completed`, after checki
 - the authorized write boundary was not exceeded;
 - dependency and frozen-contract compatibility;
 - the specified verification actually ran, with evidence recorded in `tasks[].evidence`;
-- no unintended changes or unresolved risks.
+- no unintended changes or unresolved risks;
 - the worker's own declared status and flags agree with its report body — an inconsistency
   there is a hallucination signal, not a clerical slip: re-check the artifacts before
   recording any state.
