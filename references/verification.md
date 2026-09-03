@@ -14,9 +14,16 @@ the controller reviews it. It backs control-loop steps 6 and 8.
 | Web UI change | Driven against the real surface (browser), visual/behavioral confirmation. |
 | TUI / CLI change | The actual program launched, the changed path exercised, output observed. |
 | Bulk / external mutation | Independent read-back + structural delta (see [mutation.md](mutation.md)), not the tool's count. |
+| Document / diagram artifact | Rendered as the reader will see it — Markdown structure intact, Mermaid/code fences parse and render, tables/links resolve; not just "the file was written". |
 
 No suitable runtime for the changed surface ⇒ verify with a behavioral/smoke test and state
 explicitly that visual verification was not possible.
+
+**Test-first for permanent features (TDD).** Prefer building behavioral units test-first:
+write the failing test (red) and run it to confirm it fails for the right reason, then
+implement to green, then refactor. The red run is itself evidence the test can fail — a test
+that never failed proves nothing. Pure data types and thin adapters may skip the red step,
+but any non-trivial logic (selection, parsing, orchestration) is built red→green→refactor.
 
 ## Controller review (worker results)
 
@@ -47,3 +54,11 @@ no behavior, contract, or scope.
 Declare the request complete only when task-level checks, every frozen cross-task contract,
 and all acceptance scenarios pass together. Record the end-to-end result in
 `integration.final_verification`.
+
+For shippable software, "done" also requires, before declaring complete:
+
+- non-trivial behavioral units were built test-first (TDD, above);
+- every generated doc renders and every README/usage command runs as written
+  (see [deliverables.md](deliverables.md));
+- a standalone project is publishable — README, LICENSE, `.gitignore` — with internal
+  `.ai-work/` artifacts excluded, not committed.

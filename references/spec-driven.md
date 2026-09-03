@@ -49,6 +49,7 @@ Produce these three, in order. Each lower layer must trace to the one above.
   slice of the spec with independent acceptance.
 - Step 8 (complete): the request is done only when every acceptance scenario passes, not
   when tasks report done.
+- After the spec: for a non-trivial build, produce the technical design ([tech-design.md](tech-design.md)) and persist artifacts per the `docs/` layout ([deliverables.md](deliverables.md)). The spec is the *what*; the design is the *how*.
 
 ## Anti-patterns
 

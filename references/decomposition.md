@@ -44,6 +44,8 @@ Writing tasks may run in parallel only when all are true:
 
 Different files, services, repositories, or AI platforms do not by themselves prove independence.
 
+The unit of independent validation is the toolchain's compile/test target, not the file. Two tasks that edit different files in the same package/module/test target cannot validate independently — one's half-written file breaks the other's build or test run. Split parallel writing at that boundary (e.g. one agent per Go package or per service, not per file inside a shared package); if work must share a compile unit, serialize it or give it to one agent.
+
 ## Replanning
 
 If a worker discovers an out-of-scope change, it reports the affected boundary without modifying it. The controller decides whether to expand authority, create an upstream task, change ordering, or revise the decomposition.

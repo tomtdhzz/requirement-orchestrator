@@ -108,6 +108,8 @@ requirement-orchestrator/
 │   └── experience-loop.md        # 经验闭环的设计依据（为何最小化）
 └── references/                   # 按需加载，非一次性全读
     ├── spec-driven.md            # 规格模型：Requirements / Acceptance Scenarios / Contracts
+    ├── tech-design.md            # 技术设计文档（how）：架构/详设/备选权衡/横切关注点，业界 TDD/RFC 结构
+    ├── deliverables.md           # 交付物布局：可发布 docs(prd/tech-design) vs 内部 .ai-work(ledger/plan/lessons)；可发布项目 README/LICENSE/.gitignore
     ├── context-grounding.md      # 分解前接地：架构/依赖/约定/影响面 → 记为事实
     ├── decomposition.md          # 分解与调度：选主轴、缺陷三分诊、依赖、并行门、重规划
     ├── verification.md           # 按类型的验收证据标准 + 控制方评审 + 防幻觉
@@ -126,6 +128,7 @@ requirement-orchestrator/
 ### 按需读哪份
 
 - 塑造规格（需求/验收场景/契约）→ `spec-driven.md`；在既有代码库里分解前接地 → `context-grounding.md`
+- 非平凡构建的技术设计（架构/详设/备选/横切）→ `tech-design.md`；交付物布局与可发布项目 → `deliverables.md`
 - 多个候选任务 / 服务·领域边界 / 调度决策 / 疑似仓库状态诱发的构建失败 → `decomposition.md`
 - 验收证据标准 → `verification.md`；压力测试既有需求/设计 → `challenge.md`
 - 多任务、多 agent、跨会话或跨平台 → `ledger.md`；首次派发前 → `agent-contract.md`

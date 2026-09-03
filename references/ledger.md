@@ -6,8 +6,9 @@ The ledger is the shared source of truth across agents, sessions, Codex, and Cla
 
 - A small, single-session task may keep the ledger in the active conversation.
 - Persist it for multi-agent, cross-session, or cross-platform work.
-- Prefer an existing project task location. Otherwise propose `.ai-work/tasks/<slug>/ledger.md` and obtain confirmation before creating it.
+- Prefer an existing project task location. Otherwise use `.ai-work/ledger.md` (or `.ai-work/tasks/<slug>/ledger.md` when several tasks run concurrently); confirm before creating it.
 - In an adopted Trellis flow, map the ledger into `.trellis/tasks/` rather than maintaining a competing task store.
+- The ledger is internal orchestration state, not publishable docs — never under a published `docs/` path; for a publishable project `.ai-work/` is gitignored (see [deliverables.md](deliverables.md)). The YAML format below is unchanged.
 
 Use readable Markdown with one controlled YAML block for machine state:
 

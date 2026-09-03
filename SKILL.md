@@ -24,6 +24,7 @@ In `diagnose`, report the observed or reproduced failure, confirmed root cause a
 
 1. Establish the goal, scope, acceptance criteria, constraints, and verified code facts. Ground unknowns first ([references/context-grounding.md](references/context-grounding.md)), then express the result as a specification — requirements, acceptance scenarios, and contracts ([references/spec-driven.md](references/spec-driven.md)). Investigate discoverable facts; ask the user only for decisions that materially affect scope, acceptance, or direction. Before decomposing, consult the capability knowledge base (see [references/knowledge-base.md](references/knowledge-base.md)) to pull the existing skills relevant to the goal and a same-domain comparison; prefer reusing or importing a known capability over researching from scratch, and record the chosen capabilities in the ledger.
    - Read prior project lessons if present ([references/experience.md](references/experience.md)) and treat them as candidate facts to verify, not gospel.
+   - For a non-trivial build, after the spec produce a **technical design** ([references/tech-design.md](references/tech-design.md)) — architecture, detailed design, alternatives, cross-cutting concerns — and persist artifacts under the `docs/` layout ([references/deliverables.md](references/deliverables.md)).
 2. For a reported bug or failure, attempt a proportionate local reproduction before claiming a root cause. Compare the observed failure with the report. Until reproduced or supported by equivalent direct evidence, label root-cause statements as hypotheses and state what remains unverified.
 3. Choose one primary decomposition axis and create bounded tasks. Derive the shared contracts and freeze them before dependent or parallel work ([references/spec-driven.md](references/spec-driven.md)). Record dependencies and cross-task contracts explicitly. Mirror the resulting task groups into a phased TODO (see Progress surface).
 4. Keep exactly one controlling agent. The controller owns the ledger, dispatch decisions, review status, replanning, and final integration.
@@ -41,6 +42,16 @@ Keep a visible phased TODO in sync with the ledger so the user sees phases and s
 - Advance state from real progress: mark an item in progress when its task is dispatched, and done only after the controller records `completed` in the ledger. Phase counts (`N/M`) then track verified acceptance, not dispatch.
 - Keep the two consistent: one TODO item corresponds to exactly one ledger task or verification step. Recompute both together during replanning.
 - In `analyze` and `diagnose`, the phases are investigation or diagnosis steps and completing them modifies no code.
+
+## Deliverable artifacts
+
+Separate publishable docs from internal orchestration state: reader-facing docs go under `docs/` (`docs/prd/` spec, `docs/tech-design/` design); the ledger, plan, and lessons are internal working state under `.ai-work/` — never under `docs/`, and gitignored for a publishable project. See [references/deliverables.md](references/deliverables.md).
+
+For any non-trivial build, produce a technical design after the spec and before `execute`: architecture, detailed design, alternatives considered, and cross-cutting concerns ([references/tech-design.md](references/tech-design.md)). Skip it for a single-root-cause fix where the spec plus a task list suffices.
+
+Self-review every generated Markdown deliverable before handoff: re-read it and confirm it renders as the reader will see it — structure intact, fenced/Mermaid blocks actually parse (render them, don't eyeball), links resolve. A parse/render failure is a defect to fix now. See [references/deliverables.md](references/deliverables.md) and the `Document / diagram artifact` row in [references/verification.md](references/verification.md).
+
+When the deliverable is a standalone project, "done" includes being publishable: a README (what/why, prerequisites, install, usage examples, config, architecture, test, limitations, license, disclaimer), a LICENSE, and a `.gitignore` that excludes build output, secrets, and `.ai-work/`. Verify the README's commands actually run. See [references/deliverables.md](references/deliverables.md).
 
 ## Target-system preflight
 
@@ -61,6 +72,8 @@ Discover a missing capability here, not mid-batch. If a required permission or s
 
 ## Non-negotiable boundaries
 
+These are MUST NOT-level invariants regardless of phrasing; keep them few and sharp. Elsewhere in this skill, grade rule force with RFC 2119 keywords — MUST / SHOULD / MAY, meaningful only in capitals — and use restraint: reserve MUST / MUST NOT for correctness or harm, leave preferences as SHOULD / MAY. Pair every prohibition with the positive "do instead": for agents, negative-only rules are unreliable (they cue the very behavior they forbid), so a small set of hard boundaries plus positive defaults is the robust form, not an ever-growing mandatory checklist.
+
 - Do not treat task-tree position as execution dependency.
 - Do not let workers expand their write scope silently.
 - Do not run writing agents in parallel unless dependencies are resolved, write scopes do not overlap, shared contracts are frozen, and validation is independent.
@@ -69,3 +82,5 @@ Discover a missing capability here, not mid-batch. If a required permission or s
 - Do not assert a derived value — a classification, label, summary, risk rating, or recommendation — beyond its verified source; mark an unverified derivation as such rather than fabricating a value.
 - Do not activate Trellis merely because `.trellis/` exists.
 - `analyze` and `diagnose` are read-only. A platform permission or native-plan approval does not authorize edits. Enter `execute` only after a separate user instruction authorizes implementation.
+- Do not hand off a deliverable without consuming it as its reader will — render the doc, and run the README/usage commands from the repo root exactly as written. (Do instead: render diagrams, run the commands, fix breaks before handoff.)
+- Do not call a standalone project done without a working README, LICENSE, and `.gitignore`, or with internal `.ai-work/` artifacts committed. (Do instead: ship the publishable scaffold; keep orchestration state out of the repo.)

@@ -13,9 +13,12 @@ Do this in control-loop step 1, before writing the spec's contracts. It is read-
   each other, where the seam for this change is. Not the diagram — the code.
 - **Dependencies:** the versions and APIs actually in use (not assumed). Confirm a symbol
   exists and its signature before a task depends on it.
-- **Conventions:** how this repo already does the thing you're about to do — naming, error
-  handling, test layout, config, the second existing pattern you must match rather than
-  introduce a third.
+- **Conventions (repo-first, ecosystem-fallback):** how this repo already does the thing —
+  naming, error handling, test layout, config — matching the existing pattern rather than
+  introducing a third. For a **greenfield** project with no conventions yet, adopt the
+  **ecosystem's** instead: the language's idioms and standard project layout, plus its
+  standard formatter / linter / type-checker / test runner. On conflict, repo conventions
+  win over generic ecosystem defaults.
 - **Prior art:** an existing capability, helper, or skill that already solves part of this
   (consult [knowledge-base.md](knowledge-base.md) — prefer reuse over rebuild).
 - **Blast radius:** every caller/consumer of what you'll change (for exported symbols,
@@ -29,6 +32,13 @@ Do this in control-loop step 1, before writing the spec's contracts. It is read-
   confirm enters `analysis.gaps` and is treated as an assumption, not a fact.
 - **Assumptions are liabilities.** A task built on an unverified assumption is not
   parallel-safe and its acceptance is suspect. Convert assumptions to facts or to gaps.
+- **Bind conventions; enforce with tooling, not prose.** Record the chosen conventions and
+  the enforcement command (formatter / linter / vet / tests) as constraints, pass both to
+  every worker in its contract, and make passing that command part of acceptance — do not
+  hand-police style. Conventions are facts to verify and correct, **not a rigid schema fixed
+  by tech stack**: a paradigm (e.g. DDD vs simple layered) is a design decision sized to the
+  problem, not an automatic consequence of the language (match ceremony to the problem —
+  see [tech-design.md](tech-design.md)).
 - **Delegate discovery when the surface is unknown.** Use a read-only scout to map affected
   code rather than opening files hoping; bring back a compressed fact set, not raw dumps.
 - **Re-ground on surprise.** If a worker reports the code differs from a recorded fact,
