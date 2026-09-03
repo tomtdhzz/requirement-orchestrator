@@ -73,6 +73,9 @@ new. Then the controller applies the review above and records `completed`.
 - Do not assert a derived value (classification, pass/fail, risk) beyond its verified
   source; an unverified derivation is marked as such and its gap recorded
   (see [ledger.md](ledger.md) provenance).
+- Two values are never authored by hand: a timestamp comes from the system clock, and a
+  progress count (`N/M`, a percentage) is derived by counting ledger states. Both look
+  harmless when invented and both silently misreport how much is verified.
 - "Done" means the specified end-to-end behavior plus every named acceptance scenario — not
   a compiling scaffold, a narrowed test, or a plausible subset.
 
