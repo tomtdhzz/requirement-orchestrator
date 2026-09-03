@@ -1,5 +1,7 @@
 # Requirement Orchestrator（需求编排器）
 
+**中文** · [English](README.en.md)
+
 把一个软件请求拆成**可独立验证**的工作，同时始终由**一个控制 agent** 对范围、依赖、证据与集成负责。它是一个编排器，不是提示词生成器。
 
 > 规范定义在 [`SKILL.md`](SKILL.md)；本 README 是给人读的导览。二者冲突时以 `SKILL.md` 为准。
@@ -151,3 +153,9 @@ requirement-orchestrator/
 - Codex / Claude 各读对应 adapter；主 agent/会话默认保持控制权，除非交接快照显式移交。
 - 两者互转控制权时，旧控制方停止派发**之前**先写并确认交接快照。
 - Trellis 可选：仅在其升级信号适用或用户要求时才读 `trellis-adapter.md`，不因目录存在而自动启用。
+
+## 许可与贡献
+
+- 许可:[MIT](LICENSE)
+- 贡献:见 [CONTRIBUTING.md](CONTRIBUTING.md)——改动按 RFC 2119 分级,力求"更少更锋利"而非清单越堆越长。
+- 变更记录:[CHANGELOG.md](CHANGELOG.md)。
