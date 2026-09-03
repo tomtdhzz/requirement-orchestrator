@@ -30,6 +30,8 @@ verification:
 
 An expectation a third party could not observe — "works correctly", "no regressions" — is not verification. Replace it with the command and output that would prove it, or drop the step.
 
+Before the first dispatch that changes code, record the baseline result of that enforcement command in the ledger — a later failure is otherwise unattributable (see [verification.md](verification.md)).
+
 ## Worker obligations
 
 The worker must:

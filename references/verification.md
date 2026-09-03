@@ -25,11 +25,13 @@ implement to green, then refactor. The red run is itself evidence the test can f
 that never failed proves nothing. Pure data types and thin adapters may skip the red step,
 but any non-trivial logic (selection, parsing, orchestration) is built red→green→refactor.
 
-**Record a green baseline before the first dispatch.** Run the project's checks on the
-untouched tree and put the result in the ledger. A red or unknown baseline makes every later
-failure ambiguous — you cannot tell whether a worker broke it or found it broken. When the
-baseline cannot be green, record exactly which checks already fail; a later run is then
-compared against that list, not against zero.
+**Record a green baseline before the first dispatch that changes code.** Run the
+enforcement command bound during grounding — formatter / linter / tests
+([context-grounding.md](context-grounding.md)) — on the untouched tree and put the result in
+the ledger. A red or unknown baseline makes every later failure ambiguous: you cannot tell
+whether a worker broke a check or found it broken. When the baseline cannot be green, record
+exactly which checks already fail; a later run is then compared against that list, not
+against zero.
 
 ## Controller review (worker results)
 
