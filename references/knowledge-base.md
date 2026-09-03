@@ -1,10 +1,13 @@
-# Capability Knowledge Base (consult first)
+# Capability Knowledge Base (optional; consult first when configured)
 
-At the START of `analyze`/`execute`, before decomposition, pull the capabilities that
-already exist for the goal from a capability knowledge base — instead of researching the web
-from scratch — then prefer reusing/importing over building.
+**Read this file only when a capability knowledge base is already configured.** It is an
+optional integration, not a step of the control loop: with no base configured, prior art
+comes from the repo and the installed skills ([context-grounding.md](context-grounding.md))
+and nothing here applies. When one *is* configured, query it at the START of `analyze`,
+before decomposition, instead of researching from scratch — then prefer reusing or
+importing over building.
 
-This is an **optional integration**. The reference implementation is
+The reference implementation is
 [skills-radar](https://github.com/tomtdhzz/skills-radar): a multi-source, deduped, ranked
 catalog of Agent Skills sunk into an Obsidian vault. Set `$RADAR` to your clone path. Any
 tool that maps a goal to a ranked capability shortlist works here; adapt the commands.

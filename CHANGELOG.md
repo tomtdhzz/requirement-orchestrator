@@ -30,6 +30,7 @@ this project uses date-based entries (no semantic version tags yet).
 - `references/verification.md` — anti-fabrication extended to two hand-authored values: timestamps come from the system clock and progress counts (`N/M`, percentages) are derived by counting ledger states, never written by hand. (Adapted from `automazeio/ccpm` `conventions.md`.)
 - `references/agent-contract.md` — its `Controller review` list is explicitly the short form of `verification.md` (authoritative checklist, re-review protocol, evidence standards), so the two cannot drift into competing sources; README (zh) on-demand index updated to surface re-review, the baseline, and review dispatch.
 - `references/examples/*` — both worked runs rebuilt against current rules: they had demonstrated file-level parallel reasoning (contradicting the compile/test-target gate) and had gone from `analyze`/`diagnose` straight into edits with no authorization gate; they now show the gate, a recorded green baseline, `run`/`expect` verification steps, task `status`, the phased TODO, and self-review discipline when there is no delegation.
+- `SKILL.md` / `references/knowledge-base.md` — the capability knowledge base is now explicitly optional with a stated fallback (repo + installed skills as prior art), instead of an unconditional control-loop step pointing at an integration that needs an external clone, `$RADAR`, and `python3`; recording a capability that was not actually found is forbidden.
 
 ## [2026-09-02] — Initial public release
 
