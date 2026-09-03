@@ -58,7 +58,7 @@ Modes are **semantic**, not a platform's native Plan Mode; they neither require 
 | `execute` | Dispatch bounded work, review returned results, complete integration | Yes (**needs separate user authorization**) |
 | `challenge` | Test an existing requirement/decomposition/design for omissions and risks, without changing its confirmed goal | No |
 
-`analyze` and `diagnose` are **read-only**: a platform permission or native-plan approval does not authorize edits — entering `execute` requires a separate user instruction.
+`analyze` and `diagnose` are **read-only**: neither a platform permission or native-plan approval, nor the implementation intent of the triggering request ("add login for me"), authorizes edits — that request authorizes analyzing it, not editing in the same response; entering `execute` requires a separate user instruction.
 
 ## Control loop
 

@@ -25,6 +25,7 @@ this project uses date-based entries (no semantic version tags yet).
 - `references/ledger.md` — ledger persists at internal `.ai-work/ledger.md`, never under publishable `docs/`.
 - `references/verification.md` — controller review adds a consistency check: a worker's declared status/flags must agree with its own report body; a mismatch is treated as a hallucination signal and blocks recording state until the artifacts are re-checked. (Adapted from `sdi2200262/agentic-project-management` `task-review.md`.)
 - `references/agent-contract.md` — `verification:` entries are now `run:` / `expect:` pairs (a step that must fail first names the exact failure text); an expectation no third party could observe is not verification and is replaced or dropped. (Adapted from `obra/superpowers` `writing-plans`.)
+- `SKILL.md` — read-only boundary sharpened: the implementation intent of the triggering request does not carry into edits ("add login for me" authorizes analyzing that request, not editing in the same response); READMEs (zh/en) updated to match. (Adapted from `Fission-AI/OpenSpec` `workflows/propose.ts` planning boundary.)
 
 ## [2026-09-02] — Initial public release
 

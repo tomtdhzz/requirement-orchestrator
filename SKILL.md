@@ -81,6 +81,6 @@ These are MUST NOT-level invariants regardless of phrasing; keep them few and sh
 - When changing existing artifacts, do not clear-and-rewrite anything the task did not author and cannot regenerate; insert or patch in place, mark it with a rerun-safe marker, and verify by independent read-back.
 - Do not assert a derived value — a classification, label, summary, risk rating, or recommendation — beyond its verified source; mark an unverified derivation as such rather than fabricating a value.
 - Do not activate Trellis merely because `.trellis/` exists.
-- `analyze` and `diagnose` are read-only. A platform permission or native-plan approval does not authorize edits. Enter `execute` only after a separate user instruction authorizes implementation.
+- `analyze` and `diagnose` are read-only. Neither a platform permission or native-plan approval, nor the implementation intent of the request that started this work, authorizes edits: "add login for me" authorizes analyzing that request, not editing in the same response. Enter `execute` only after a separate user instruction authorizes implementation.
 - Do not hand off a deliverable without consuming it as its reader will — render the doc, and run the README/usage commands from the repo root exactly as written. (Do instead: render diagrams, run the commands, fix breaks before handoff.)
 - Do not call a standalone project done without a working README, LICENSE, and `.gitignore`, or with internal `.ai-work/` artifacts committed. (Do instead: ship the publishable scaffold; keep orchestration state out of the repo.)
