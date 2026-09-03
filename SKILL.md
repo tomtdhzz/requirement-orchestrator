@@ -76,7 +76,7 @@ These are MUST NOT-level invariants regardless of phrasing; keep them few and sh
 
 - Do not treat task-tree position as execution dependency.
 - Do not let workers expand their write scope silently.
-- Do not run writing agents in parallel unless dependencies are resolved, write scopes do not overlap, shared contracts are frozen, and validation is independent.
+- Do not run writing agents in parallel unless dependencies are resolved, no two write scopes share a compile/test target, shared contracts are frozen, and validation is independent. (Different files inside one package/module/test target are not independent.)
 - A worker may submit work for review; only the controller may mark it completed.
 - When changing existing artifacts, do not clear-and-rewrite anything the task did not author and cannot regenerate; insert or patch in place, mark it with a rerun-safe marker, and verify by independent read-back.
 - Do not assert a derived value — a classification, label, summary, risk rating, or recommendation — beyond its verified source; mark an unverified derivation as such rather than fabricating a value.
