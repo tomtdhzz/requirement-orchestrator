@@ -1,11 +1,11 @@
-# Example — Bug flow (diagnose → execute)
+# Example — Bug flow (diagnose → authorized → execute)
 
 Illustrative end-to-end run of a reported failure. Shows reproduction-before-root-cause,
 single root cause per repair path, and evidence-gated closure.
 
 **Report:** "Checkout intermittently returns 500."
 
-## 1. Reproduce before claiming a cause (diagnose)
+## 1. Reproduce before claiming a cause (diagnose, read-only)
 
 Multiple 500s are symptoms until evidence shows independent causes
 ([decomposition.md](../decomposition.md) triage). Attempt a proportionate reproduction:
@@ -33,7 +33,17 @@ analysis:
 Not applicable here (logic defect, reproduced). For a "symbol suddenly missing" style
 failure, check branch/HEAD/merge-base/divergence before assuming a code defect.
 
-## 3. Spec the fix (one root cause, one repair path)
+## 3. Authorization gate
+
+`diagnose` ends here: the reproduced failure, the confirmed root cause with its trace, the
+open gap, and the repair options are the deliverable. "Checkout intermittently returns 500"
+is a report, not an authorization — and the absence of delegation does not change that. The
+user picks a repair path and says to fix it; only that opens `execute`.
+
+Baseline before the fix: `npx jest` → `318 passed, 0 failed` recorded in the ledger, so the
+regression test's later red run is unambiguous.
+
+## 4. Spec the fix (one root cause, one repair path)
 
 - **Requirement:** checkout with no coupon succeeds; coupon path unchanged.
 - **Acceptance scenarios:** A1 the reproduction (no-coupon checkout under concurrency) no
@@ -49,18 +59,34 @@ tasks:
     depends_on: []
     write_scope: [src/checkout/handler.ts, test/checkout.spec.ts]
     acceptance: ["A1 repro no longer triggers", "A2 coupon path intact", "A3 test added"]
+    verification:
+      - run: "npx jest test/checkout.spec.ts -t 'no coupon'"
+        expect: "FAIL — expected 201, got 500 (before the fix; this is the red run)"
+      - run: "npx jest test/checkout.spec.ts"
+        expect: "PASS — incl. 'no coupon' and 'valid coupon records coupon_id'"
+      - run: "scripts/replay-checkout.sh --concurrency 4 --n 200"
+        expect: "0 responses with status 500 (was ~10/200)"
+    status: pending
 ```
 
-Single root cause + single repair path ⇒ no delegation; the controller uses the control
-loop directly. Fix source (make `coupon_id` nullable or omit the field when absent — choose
-per schema intent), not the symptom (don't swallow the 500).
+Single root cause + single repair path ⇒ no delegation; the controller runs the loop itself.
+That changes who does the work, not the gates: the mode and the authorization above still
+apply, and the acceptance evidence below is the same standard. Fix source (make `coupon_id`
+nullable or omit the field when absent — choose per schema intent), not the symptom (don't
+swallow the 500).
 
-## 4. Verify ([verification.md](../verification.md))
+Reviewing your own work removes the independent reviewer, not the review: judge the diff
+against the frozen acceptance scenarios, never the intention behind it, and record the same
+evidence you would demand from a worker.
 
-Bug-fix proof = the reproduction that failed before now passes. Run A1 (was 1/20 500s →
-0/200), A2, and the new A3 regression. Record in `tasks[].evidence`.
+## 5. Verify ([verification.md](../verification.md))
 
-## 5. Close (step 8)
+Bug-fix proof = the reproduction that failed before now passes. The red run above is itself
+evidence the regression test can fail. Run the steps as written, then record each `run` and
+its observed output in `tasks[].evidence` — timestamps from the system clock, never typed in
+by hand.
+
+## 6. Close (step 8)
 
 Complete only when A1–A3 pass together. Revisit the open gap (other NOT NULL columns from
 optional fields): either a fact ("checked, none") or a new task — do not leave it silently
