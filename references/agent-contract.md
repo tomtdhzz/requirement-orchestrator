@@ -18,6 +18,18 @@ verification: []
 
 Provide only the relevant ledger facts, contracts, project instructions, and source locations. Do not send the full conversation or unrelated task branches.
 
+`verification:` entries are runnable, not intentions. Each is a command plus the observable outcome it must produce; a step that must fail first names the exact failure text, so the worker cannot mistake a different failure for the expected one:
+
+```yaml
+verification:
+  - run: "go test ./internal/auth/..."
+    expect: "ok, 0 failures"
+  - run: "./bin/tool sync --dry-run"
+    expect: 'FAIL — "unknown flag: --dry-run"'
+```
+
+An expectation a third party could not observe — "works correctly", "no regressions" — is not verification. Replace it with the command and output that would prove it, or drop the step.
+
 ## Worker obligations
 
 The worker must:
