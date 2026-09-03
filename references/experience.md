@@ -37,6 +37,24 @@ corrected or deprecated, not trusted blindly.
 - Never auto-edit SKILL.md or the references from lessons. Promoting a recurring lesson into
   the skill itself is a human decision, made explicitly.
 
+## Skill improvement (opt-in, separate from project lessons)
+
+Project lessons above are automatic and project-local. Improving the **skill itself**
+(SKILL.md / references) from a run is a distinct, **opt-in** action — default off, never
+automatic (see the boundary above).
+
+- **Offer, don't impose.** At task end, if a run surfaced a lesson that is *general* (not
+  project-specific) and *likely to recur across projects*, offer promoting it to the skill as
+  an option. Apply only if the user chooses it; otherwise it stays in `.ai-work/lessons.md`.
+- **Evidence-gated.** Promote only what this run actually demonstrated; no speculative rules.
+- **Restraint over accretion.** Prefer grading an existing rule (SHOULD / MAY) or
+  consolidating it over adding a new one; a genuine invariant becomes a paired MUST NOT +
+  "do instead" in `Non-negotiable boundaries` (see the rule-force note in SKILL.md). Aim for
+  fewer, sharper rules — not a growing checklist.
+- **Human-approved, committed separately.** Surface the exact change (file + wording +
+  RFC 2119 force) for an explicit OK; after editing, verify it renders and links resolve
+  ([deliverables.md](deliverables.md)); commit skill changes on their own.
+
 ## Grow-later (only on evidence, not speculation)
 Add real retrieval (`kb.py`-style query by task signature) and consolidation
 (Importance / Merge / Decay / Eviction) ONLY when `lessons.md` grows past ~30 entries AND
