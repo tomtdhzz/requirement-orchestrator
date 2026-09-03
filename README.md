@@ -115,10 +115,10 @@ requirement-orchestrator/
     ├── deliverables.md           # 交付物布局：可发布 docs(prd/tech-design) vs 内部 .ai-work(ledger/plan/lessons)；可发布项目 README/LICENSE/.gitignore
     ├── context-grounding.md      # 分解前接地：架构/依赖/约定/影响面 → 记为事实
     ├── decomposition.md          # 分解与调度：选主轴、缺陷三分诊、依赖、并行门、重规划
-    ├── verification.md           # 按类型的验收证据标准 + 控制方评审 + 复评收敛 + 防幻觉
+    ├── verification.md           # 按类型的验收证据标准 + 控制方评审 + 评审派发禁预判 + 复评收敛 + 防幻觉
     ├── challenge.md              # 压力测试：质量维度对抗 + 遗漏/风险清单
     ├── ledger.md                 # 需求 ledger：机器状态 YAML、状态机、出处纪律、交接快照
-    ├── agent-contract.md         # 子 agent 契约：派发必填字段、worker 义务、评审派发禁预判、控制方评审
+    ├── agent-contract.md         # 子 agent 契约：派发必填字段、worker 义务、控制方评审（短表）
     ├── mutation.md               # 安全批量改动：非破坏式、幂等、试点→批量、增量+回读校验
     ├── knowledge-base.md         # 起点先查能力库（可选集成，如 skills-radar）
     ├── experience.md             # 经验闭环：项目教训自动 append；skill 自身改进=opt-in（默认关）
@@ -133,8 +133,8 @@ requirement-orchestrator/
 - 塑造规格（需求/验收场景/契约）→ `spec-driven.md`；在既有代码库里分解前接地 → `context-grounding.md`
 - 非平凡构建的技术设计（架构/详设/备选/横切）→ `tech-design.md`；交付物布局与可发布项目 → `deliverables.md`
 - 多个候选任务 / 服务·领域边界 / 调度决策 / 疑似仓库状态诱发的构建失败 → `decomposition.md`
-- 验收证据标准、复评收敛与绿基线 → `verification.md`；压力测试既有需求/设计 → `challenge.md`
-- 多任务、多 agent、跨会话或跨平台 → `ledger.md`；首次派发前、派发评审前 → `agent-contract.md`
+- 验收证据标准、评审派发、复评收敛与绿基线 → `verification.md`；压力测试既有需求/设计 → `challenge.md`
+- 多任务、多 agent、跨会话或跨平台 → `ledger.md`；首次派发前 → `agent-contract.md`
 - 改写/删除/跨多个既有工件铺开变更，或写外部系统 → `mutation.md`
 - 起点先查已有能力（可选)→ `knowledge-base.md`；沉淀项目教训、或把经验回灌进 skill（opt-in，默认关）→ `experience.md`
 - 完整走一遍的范例 → `examples/`；具体平台 → 对应 `*-adapter.md`

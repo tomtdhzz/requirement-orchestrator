@@ -46,17 +46,7 @@ The worker must not broaden product scope, change a frozen shared contract, or m
 
 ## Review dispatch
 
-A review is worth only its independence. Do not pre-judge the verdict in the request:
-wording such as "don't flag X", "at most Minor", "treat this as intentional", or "the plan
-chose this" removes a finding before it can be made, and leaves an evidence gate that cannot
-fail. If you are about to write one of those, stop — you are deciding the outcome, not
-requesting a review.
-
-Do instead: give the change, the contract it must satisfy, and the evidence paths, then let
-the reviewer produce findings. A defect the plan or the contract mandated is still reported,
-labeled `plan-mandated`; the plan does not grade its own work. Answer a finding you believe
-is wrong with a verdict and evidence (see [verification.md](verification.md)), never by
-suppressing it in advance.
+A review is worth only its independence, so the request must not pre-judge its verdict. The rule and its "do instead" live with the review standards themselves, in [verification.md](verification.md) — read it when dispatching a review, not only before the first task dispatch.
 
 ## Controller review
 

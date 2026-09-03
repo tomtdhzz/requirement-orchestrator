@@ -50,6 +50,20 @@ A failed or unverifiable result returns to `in_progress` with specific findings;
 never marked `completed`. The controller may make a small correction only when it changes
 no behavior, contract, or scope.
 
+## Review dispatch
+
+A review is worth only its independence. Do not pre-judge the verdict in the request:
+wording such as "don't flag X", "at most Minor", "treat this as intentional", or "the plan
+chose this" removes a finding before it can be made, and leaves an evidence gate that cannot
+fail. If you are about to write one of those, stop — you are deciding the outcome, not
+requesting a review.
+
+Do instead: give the change, the contract it must satisfy, and the evidence paths, then let
+the reviewer produce findings. A defect the plan or the contract mandated is still reported,
+labeled `plan-mandated`; the plan does not grade its own work. Answer a finding you believe
+is wrong with a verdict and evidence — the re-review protocol below — never by suppressing
+it in advance.
+
 ## Re-review of returned work
 
 A returned task's second pass **verdicts the recorded findings**; it does not restart the
