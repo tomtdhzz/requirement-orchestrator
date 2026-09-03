@@ -31,6 +31,7 @@ ln -s "$PWD/requirement-orchestrator" ~/.claude/skills/requirement-orchestrator
 - **触发**:对 agent 说"用 requirement-orchestrator 分析/编排这个需求……";当请求需要分解+委派+验证时它也会自动启用。
 - **选模式**:`analyze`(默认,只读蓝图)/ `diagnose` / `execute`(需你单独授权改代码)/ `challenge`。
 - **过程**:agent 先读 `SKILL.md`,按需加载 `references/*`;维护分阶段 TODO 与 ledger;`execute` 完成后按证据门验收。
+- **回灌(可选)**:任务完成后,项目教训自动记入 `.ai-work/lessons.md`;是否把**通用经验回灌进本 skill** 是一个 opt-in 选项(默认关、需你同意、单独提交)——见 `references/experience.md`。
 - 想看完整走一遍:`references/examples/feature-example.md`、`bug-example.md`。
 
 ## 何时用
@@ -118,7 +119,7 @@ requirement-orchestrator/
     ├── agent-contract.md         # 子 agent 契约：派发必填字段、worker 义务、控制方评审
     ├── mutation.md               # 安全批量改动：非破坏式、幂等、试点→批量、增量+回读校验
     ├── knowledge-base.md         # 起点先查能力库（可选集成，如 skills-radar）
-    ├── experience.md             # 最小经验闭环：项目特定教训 append + 起点读
+    ├── experience.md             # 经验闭环：项目教训自动 append；skill 自身改进=opt-in（默认关）
     ├── examples/                 # 端到端范例：feature-example.md、bug-example.md
     ├── codex-adapter.md          # Codex 平台适配
     ├── claude-adapter.md         # Claude 平台适配
@@ -133,7 +134,7 @@ requirement-orchestrator/
 - 验收证据标准 → `verification.md`；压力测试既有需求/设计 → `challenge.md`
 - 多任务、多 agent、跨会话或跨平台 → `ledger.md`；首次派发前 → `agent-contract.md`
 - 改写/删除/跨多个既有工件铺开变更，或写外部系统 → `mutation.md`
-- 起点先查已有能力（可选)→ `knowledge-base.md`；沉淀/复用项目特定教训 → `experience.md`
+- 起点先查已有能力（可选)→ `knowledge-base.md`；沉淀项目教训、或把经验回灌进 skill（opt-in，默认关）→ `experience.md`
 - 完整走一遍的范例 → `examples/`；具体平台 → 对应 `*-adapter.md`
 
 ## 核心概念：ledger（账本）
