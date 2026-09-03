@@ -34,6 +34,9 @@ A worker submits `review`; only the controller records `completed`, after checki
 - dependency and frozen-contract compatibility;
 - the specified verification actually ran, with evidence recorded in `tasks[].evidence`;
 - no unintended changes or unresolved risks.
+- the worker's own declared status and flags agree with its report body — an inconsistency
+  there is a hallucination signal, not a clerical slip: re-check the artifacts before
+  recording any state.
 
 A failed or unverifiable result returns to `in_progress` with specific findings; it is
 never marked `completed`. The controller may make a small correction only when it changes

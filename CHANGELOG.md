@@ -23,6 +23,7 @@ this project uses date-based entries (no semantic version tags yet).
 - `references/decomposition.md` — parallel gate sharpened: the unit of independent validation is the toolchain's compile/test target, not the file.
 - `references/context-grounding.md` — convention grounding: repo-first, ecosystem-fallback, enforced by tooling (formatter/linter/test), not a rigid schema fixed by tech stack.
 - `references/ledger.md` — ledger persists at internal `.ai-work/ledger.md`, never under publishable `docs/`.
+- `references/verification.md` — controller review adds a consistency check: a worker's declared status/flags must agree with its own report body; a mismatch is treated as a hallucination signal and blocks recording state until the artifacts are re-checked. (Adapted from `sdi2200262/agentic-project-management` `task-review.md`.)
 
 ## [2026-09-02] — Initial public release
 
