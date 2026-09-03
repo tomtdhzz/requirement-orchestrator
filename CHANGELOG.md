@@ -14,6 +14,7 @@ this project uses date-based entries (no semantic version tags yet).
 - English README (`README.en.md`), `CONTRIBUTING.md`, and this changelog.
 - GitHub Actions CI (`.github/workflows/ci.yml`): internal Markdown link check + guard against committing `.ai-work/`.
 - Pull request template (`.github/PULL_REQUEST_TEMPLATE.md`) and commit-message convention (Conventional Commits + `.gitmessage` + CONTRIBUTING section) requiring a what/why body.
+- `references/verification.md` — `Re-review of returned work`: a returned task's second pass verdicts each prior finding `addressed` / `not addressed` ("attempted" is not addressed), scopes the fresh look to the fix diff, and records an out-of-scope observation separately instead of extending the loop. (Convergence protocol adapted from `obra/superpowers` `re-review-prompt.md`.)
 
 ### Changed
 - `SKILL.md` — rules now graded with RFC 2119 and framed hybrid (few `MUST NOT` boundaries + positive defaults), with an anti-checklist-sprawl note.

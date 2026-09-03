@@ -39,6 +39,24 @@ A failed or unverifiable result returns to `in_progress` with specific findings;
 never marked `completed`. The controller may make a small correction only when it changes
 no behavior, contract, or scope.
 
+## Re-review of returned work
+
+A returned task's second pass **verdicts the recorded findings**; it does not restart the
+review. Without this scoping, findings multiply each round and the review never converges.
+
+- **Verdict every prior finding** as `addressed` or `not addressed`, one line each. Silently
+  dropping or merging a finding is a defect in the review itself, not a shortcut.
+- **"Attempted" is not addressed.** A code change in the right area, a partial fix, or a
+  stated intention does not clear a finding — the specific defect must no longer exist.
+- **Scope the fresh look to the fix diff:** what the fix itself broke. Do not re-audit code
+  the fix did not touch; that ground was covered in the first pass.
+- **An out-of-scope observation is recorded, not blocking.** Note it as its own finding
+  (ledger evidence, or a deferred item) and let it be scheduled separately. It does not
+  extend this task's loop.
+
+The loop ends when every prior finding is `addressed` and the fix diff introduces nothing
+new. Then the controller applies the review above and records `completed`.
+
 ## Anti-fabrication
 
 - Claims of test/build/run results must be grounded in an actual run. Unobserved claims are

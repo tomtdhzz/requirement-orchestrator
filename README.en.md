@@ -116,7 +116,7 @@ requirement-orchestrator/
     ├── deliverables.md           # artifact layout: publishable docs vs internal .ai-work; publishable-project scaffold
     ├── context-grounding.md      # ground architecture/deps/conventions/blast-radius as facts before decomposing
     ├── decomposition.md          # axis, bug triage, dependencies, parallel gate, replanning
-    ├── verification.md           # evidence standards by task type + controller review + anti-fabrication
+    ├── verification.md           # evidence standards by task type + controller review + re-review convergence + anti-fabrication
     ├── challenge.md              # stress-testing: quality dimensions + omission/risk list
     ├── ledger.md                 # requirement ledger: machine-state YAML, state machine, provenance, handoff snapshot
     ├── agent-contract.md         # subagent contract: required dispatch fields, worker duties, controller review
