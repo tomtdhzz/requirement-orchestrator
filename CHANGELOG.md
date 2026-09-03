@@ -13,6 +13,7 @@ this project uses date-based entries (no semantic version tags yet).
 - Non-negotiable boundaries for deliverable self-review (render docs, run README commands as written) and publishable projects (no committed `.ai-work/`).
 - English README (`README.en.md`), `CONTRIBUTING.md`, and this changelog.
 - GitHub Actions CI (`.github/workflows/ci.yml`): internal Markdown link check + guard against committing `.ai-work/`.
+- Pull request template (`.github/PULL_REQUEST_TEMPLATE.md`) and commit-message convention (Conventional Commits + `.gitmessage` + CONTRIBUTING section) requiring a what/why body.
 
 ### Changed
 - `SKILL.md` — rules now graded with RFC 2119 and framed hybrid (few `MUST NOT` boundaries + positive defaults), with an anti-checklist-sprawl note.

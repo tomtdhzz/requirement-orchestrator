@@ -16,6 +16,23 @@ Thanks for improving Requirement Orchestrator. It is a **methodology skill — M
 - A hard invariant → a paired `MUST NOT` + "do instead" in `SKILL.md` → `Non-negotiable boundaries`.
 - Project-specific lessons are **not** skill content — they live in a project's `.ai-work/lessons.md` (see `references/experience.md`). Promoting a lesson into this skill is an **opt-in, human-approved** step, committed separately.
 
+## Commit messages
+
+Follow [Conventional Commits](https://www.conventionalcommits.org/): `type(scope): imperative summary`, then a body that **clearly states what changed and why** — one bullet per change, cite evidence. The subject is the shape; the body is where a reader learns what you actually did.
+
+- **Types**: `feat`, `fix`, `docs`, `refs` (reference-file content), `ci`, `chore`, `refactor`. Scope optional (e.g. `docs(README)`, `refs(decomposition)`).
+- **One concern per commit**; keep `SKILL.md` behavior changes separate from docs.
+- A commit template lives at [`.gitmessage`](.gitmessage) — enable it once: `git config commit.template .gitmessage`.
+
+Example:
+
+```text
+refs: sharpen parallel gate to compile/test-target boundary
+
+- decomposition.md: the unit of independent validation is the toolchain target, not the file
+- why: two agents editing the same Go package broke each other's `go test` (bili2go run)
+```
+
 ## Before you open a PR
 
 - Every cross-reference link resolves; every Markdown/diagram renders as a reader will see it (render Mermaid, don't eyeball).
@@ -30,3 +47,4 @@ Thanks for improving Requirement Orchestrator. It is a **methodology skill — M
 - [ ] Prefers grading/consolidation over net-new rules
 - [ ] Links resolve, docs render, no secrets, no `.ai-work/`
 - [ ] `CHANGELOG.md` updated
+- [ ] Commit messages follow Conventional Commits with a what/why body
