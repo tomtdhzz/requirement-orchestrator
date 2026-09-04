@@ -48,6 +48,6 @@ The unit of independent validation is the toolchain's compile/test target, not t
 
 ## Replanning
 
-If a worker discovers an out-of-scope change, it reports the affected boundary without modifying it. The controller decides whether to expand authority, create an upstream task, change ordering, or revise the decomposition.
+If a worker discovers an out-of-scope change, it reports the affected boundary without modifying it. The controller then decides ordering, a smaller split, or an upstream task on its own — but **widening a write scope, or adding work beyond the confirmed spec, needs the user's confirmation first**. Narrowing scope already requires approval ([spec-driven.md](spec-driven.md)); widening it changes the product and spends the user's budget, so it cannot be the one direction a controller may take silently.
 
 On failure, classify the cause before retrying: missing context, invalid contract, excessive task size, environmental blocker, or implementation error. Retry the same approach at most once; a repeated failure requires a changed plan, smaller task, controller takeover, or an explicit blocker.
