@@ -15,6 +15,7 @@ Thanks for improving Requirement Orchestrator. It is a **methodology skill — M
 - A new capability/how-to → a `references/*.md`, loaded on demand (not dumped into `SKILL.md`).
 - A hard invariant → a paired `MUST NOT` + "do instead" in `SKILL.md` → `Non-negotiable boundaries`.
 - Project-specific lessons are **not** skill content — they live in a project's `.ai-work/lessons.md` (see `references/experience.md`). Promoting a lesson into this skill is an **opt-in, human-approved** step, committed separately.
+- The mode set or the `SKILL.md` frontmatter changes → update `agents/openai.yaml` in the same commit. It is a second entry point with its own description, CI does not compare them, and a user arriving through it gets whatever mental model that file last stated.
 
 ## Retiring a rule
 

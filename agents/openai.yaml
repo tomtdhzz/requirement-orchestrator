@@ -1,4 +1,4 @@
 interface:
   display_name: "Requirement Orchestrator"
-  short_description: "Decompose and control multi-agent software delivery"
-  default_prompt: "Use $requirement-orchestrator to analyze this software request, choose bounded tasks when needed, and coordinate verified delivery only when execution is authorized."
+  short_description: "Scope, decompose and accept software work on evidence"
+  default_prompt: "Use $requirement-orchestrator for this software request: analyze it (or diagnose it, if something already failed), challenge a plan on request, and coordinate verified delivery only after execution is authorized."
