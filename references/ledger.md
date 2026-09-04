@@ -47,7 +47,7 @@ integration:
 
 ## Derived output carries provenance
 
-A derived artifact — a classification, label, summary, risk rating, or recommendation — is only as trustworthy as the fact it rests on. For each derived claim, record which verified fact in `analysis.facts` supports it. Where the supporting fact is unverified, mark the derived item as unverified rather than asserting it, and place the open question in `analysis.gaps`. Never fabricate a value to fill a slot; absence of evidence is reported as a gap, not smoothed over.
+A derived artifact — a classification, label, summary, risk rating, or recommendation — is only as trustworthy as the fact it rests on. For each derived claim, record which verified fact in `analysis.facts` supports it. Where the supporting fact is unverified, mark the derived item as unverified rather than asserting it, and place the open question in `analysis.gaps`. NEVER fabricate a value to fill a slot; absence of evidence is reported as a gap, not smoothed over.
 
 ## State transitions
 

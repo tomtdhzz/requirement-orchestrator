@@ -7,7 +7,7 @@ Applies when `execute` changes existing artifacts — documents, configs, genera
 ## Non-destructive by default
 
 - Prefer a surgical insert or patch over clear-and-rewrite. Rewriting a whole artifact destroys anything the task did not author and cannot regenerate — human edits, comments, screenshots, adjacent configuration.
-- Before any rewrite, identify what in the target was not produced by this task. If such content exists and is not reconstructable from a source of truth, do not rewrite; insert or patch in place.
+- Before any rewrite, identify what in the target was not produced by this task. If such content exists and is not reconstructable from a source of truth, you MUST NOT rewrite; insert or patch in place.
 - Treat an artifact that may have been edited by others as authoritative for the parts you did not write.
 
 ## Idempotent and rerun-safe

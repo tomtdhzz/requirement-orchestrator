@@ -72,7 +72,7 @@ Discover a missing capability here, not mid-batch. If a required permission or s
 
 ## Non-negotiable boundaries
 
-These are MUST NOT-level invariants regardless of phrasing; keep them few and sharp. Elsewhere in this skill, grade rule force with RFC 2119 keywords — MUST / SHOULD / MAY, meaningful only in capitals — and use restraint: reserve MUST / MUST NOT for correctness or harm, leave preferences as SHOULD / MAY. Pair every prohibition with the positive "do instead": for agents, negative-only rules are unreliable (they cue the very behavior they forbid), so a small set of hard boundaries plus positive defaults is the robust form, not an ever-growing mandatory checklist.
+These are MUST NOT-level invariants regardless of phrasing: few, sharp, and each paired with the positive default to use instead. Elsewhere, force is graded with RFC 2119 keywords, meaningful only in capitals. How to author a rule — grading, pairing, admission and retirement — is in `CONTRIBUTING.md`, not here.
 
 - Do not treat task-tree position as execution dependency. (Do instead: order work only by a recorded `depends_on`.)
 - Workers write only inside their `write_scope`; an out-of-scope need is reported to the controller, not taken. (Disclosing an out-of-scope edit does not authorize it.)

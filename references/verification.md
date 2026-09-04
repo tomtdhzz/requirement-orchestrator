@@ -113,7 +113,7 @@ never mark it `completed` on the strength of the ruling alone.
 
 ## Anti-fabrication
 
-- Claims of test/build/run results must be grounded in an actual run. Unobserved claims are
+- Claims of test/build/run results MUST be grounded in an actual run. Unobserved claims are
   labeled inference, not fact.
 - Do not assert a derived value (classification, pass/fail, risk) beyond its verified
   source; an unverified derivation is marked as such and its gap recorded
