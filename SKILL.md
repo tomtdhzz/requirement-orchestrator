@@ -76,6 +76,7 @@ These are MUST NOT-level invariants regardless of phrasing: few, sharp, and each
 - Do not treat task-tree position as execution dependency. (Do instead: order work only by a recorded `depends_on`.)
 - Workers write only inside their `write_scope`; an out-of-scope need is reported to the controller, not taken. (Disclosing an out-of-scope edit does not authorize it.)
 - Do not run writing agents in parallel unless dependencies are resolved, no two write scopes share a compile/test target, shared contracts are frozen, and validation is independent. (Different files inside one package/module/test target are not independent.)
+- Do not dispatch a writing task onto a dirty or shared working tree. (Do instead: record the clean baseline first, give concurrent writers disjoint compile/test targets or separate worktrees, and revert a `failed` task by its own `write_scope` — never by discarding the whole tree, which destroys the user's uncommitted work.)
 - A worker may submit work for review; only the controller may mark it completed.
 - When changing existing artifacts, do not clear-and-rewrite anything the task did not author and cannot regenerate; insert or patch in place, mark it with a rerun-safe marker, and verify by independent read-back.
 - Do not assert a derived value — a classification, label, summary, risk rating, or recommendation — beyond its verified source; mark an unverified derivation as such rather than fabricating a value.
