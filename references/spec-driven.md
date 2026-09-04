@@ -28,6 +28,12 @@ Produce these three, in order. Each lower layer must trace to the one above.
 
 ## Rules
 
+- **Never create a second spec source.** If the repository already holds the spec — a
+  framework's directory, a wiki page, an issue — read it and work from it; this skill owns
+  delegation and acceptance, not spec production. Record where it lives in the ledger's
+  `analysis.decisions` so a later session knows why there is no `docs/prd/` here. A spec
+  that is thin (a requirement with no scenario, acceptance written as "it works") is a
+  finding to raise, not a reason to rewrite it in this layout.
 - **Trace, don't restate.** Every acceptance scenario points to a requirement; every task
   points to the scenarios it satisfies. An orphan task (no requirement) is scope creep; a
   requirement with no scenario is unverifiable and blocks the spec.
