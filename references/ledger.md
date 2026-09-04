@@ -64,6 +64,16 @@ review -> in_progress
 
 Workers report `review`, `blocked`, or `failed`. The controller alone records `completed` after verification.
 
+## Resuming after an interruption
+
+A dropped session on the same platform needs no handoff snapshot, but it does need one rule: **every `in_progress` task is unverified until re-checked.** Its worker died with the session, so the state says "started", not "partly done" — and the artifacts may be complete, half-written, or untouched, which the ledger cannot tell you.
+
+On resume:
+
+- read the ledger and `git log`/`git diff` rather than memory of the prior session — a `completed` line means done, an `in_progress` line means nothing;
+- for each `in_progress` task, inspect the artifacts under its `write_scope`, then either re-dispatch it or mark it `failed`; never promote it on the strength of the status alone;
+- re-check `request.execute_authorized` before writing anything. Authorization belongs to the user's instruction, not to the session that received it — a fresh session that assumes it inherits the authorization is editing without one.
+
 ## Handoff snapshot
 
 Before changing the controlling platform, append a snapshot containing:
