@@ -52,8 +52,11 @@ automatic (see the boundary above).
   "do instead" in `Non-negotiable boundaries` (see the rule-force note in SKILL.md). Aim for
   fewer, sharper rules — not a growing checklist.
 - **Human-approved, committed separately.** Surface the exact change (file + wording +
-  RFC 2119 force) for an explicit OK; after editing, verify it renders and links resolve
-  ([deliverables.md](deliverables.md)); commit skill changes on their own.
+  RFC 2119 force) for an explicit OK, together with what the promotion admits: the gap, its
+  consequence class, where the cost lands, and the condition under which the rule would be
+  retired (`CONTRIBUTING.md` → `Retiring a rule`). Promotion is the main way rules enter, so
+  it goes through the same gate as a hand-written one. After editing, verify it renders and
+  links resolve ([deliverables.md](deliverables.md)); commit skill changes on their own.
 
 ## Grow-later (only on evidence, not speculation)
 Add real retrieval (`kb.py`-style query by task signature) and consolidation

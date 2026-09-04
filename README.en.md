@@ -144,4 +144,4 @@ A **shared source of truth** across agents / sessions / platforms. It stores dec
 
 ## Contributing
 
-See [CONTRIBUTING.md](CONTRIBUTING.md). Changes are graded with RFC 2119 and favor fewer, sharper rules over an ever-growing checklist.
+See [CONTRIBUTING.md](CONTRIBUTING.md). Changes are graded with RFC 2119, and every rule must state its gap, consequence class, cost location, and **retirement condition** — favoring fewer, sharper rules over an ever-growing checklist.

@@ -157,5 +157,5 @@ requirement-orchestrator/
 ## 许可与贡献
 
 - 许可:[MIT](LICENSE)
-- 贡献:见 [CONTRIBUTING.md](CONTRIBUTING.md)——改动按 RFC 2119 分级,力求"更少更锋利"而非清单越堆越长。
+- 贡献:见 [CONTRIBUTING.md](CONTRIBUTING.md)——改动按 RFC 2119 分级,每条规则须写明缺口、后果类型、代价落点与**撤回条件**;力求"更少更锋利"而非清单越堆越长。
 - 变更记录:[CHANGELOG.md](CHANGELOG.md)。
