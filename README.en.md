@@ -53,8 +53,8 @@ Modes are **semantic**, not a platform's native Plan Mode; they neither require 
 
 | Mode | What it does | Edits code? |
 |---|---|---|
-| `analyze` | Investigate request + code, keep the ledger, produce an execution blueprint | No (default) |
-| `diagnose` | Reproduce and explain a failure; separate confirmed root cause / evidence / unknowns / repair paths | No |
+| `analyze` | Investigate the request and codebase, keep the ledger, produce an execution blueprint | No (default, and only when nothing has failed yet) |
+| `diagnose` | Reproduce and explain a failure; separate confirmed root cause / evidence / unknowns / repair paths | No (**a request about a failure that already happened routes here, with or without the user naming a mode**) |
 | `execute` | Dispatch bounded work, review returned results, complete integration | Yes (**needs separate user authorization**) |
 | `challenge` | Test an existing requirement / decomposition / design / **implementation** for omissions and risks, without changing its confirmed goal (a code or PR review is this mode) | No |
 
