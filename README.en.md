@@ -138,6 +138,15 @@ A **shared source of truth** across agents / sessions / platforms. It stores dec
 - State machine: `pending → in_progress → review → completed`, plus `blocked` / `failed`; workers report only `review`/`blocked`/`failed`, and only the controller records `completed` after verification.
 - Before switching controlling platform, write and confirm a **handoff snapshot**; the old controller stops dispatching only after the new one acknowledges it.
 
+## Limitations & non-goals
+
+- **No enforcement.** This is a pure prompt artifact: its rules give you an **observable check, not a block**. They let a violation be caught afterwards; they cannot stop one from happening. Real enforcement lives in tooling (an editor that echoes the diff, a pre-commit hook, a CI gate) — this skill neither provides that nor pretends to.
+- Consequently [`references/verification.md`](references/verification.md)'s evidence standards are the only part that converts good intentions into something checkable. Remove them and the rest is wording.
+- **Resident cost is real.** `SKILL.md` enters context every session, and rule growth crowds out the task's own context. That is why every rule must state a retirement condition (see `Retiring a rule` in [CONTRIBUTING.md](CONTRIBUTING.md)).
+- **The parallel gate is a criterion, not a lock.** It tells you whether two writing tasks may run at once; it does not isolate them. Working-tree isolation remains your git habit.
+- **The ledger is a file, not a database.** Cross-session continuation depends on it, but nothing arbitrates when it is stale or corrupted — on recovery, treat every `in_progress` task as unverified and re-check its artifacts.
+- **Non-goals**: no task store, board, or dashboard; no hosted state (state always lands in the target project's local files); no spec generation of its own (compose it with spec-kit / OpenSpec / BMAD — they produce the spec, this skill governs delegation and acceptance); no strongly consistent cross-platform state (handoff is a snapshot, not a server).
+
 ## License
 
 [MIT](LICENSE)
