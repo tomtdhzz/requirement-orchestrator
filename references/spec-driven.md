@@ -41,6 +41,27 @@ Produce these three, in order. Each lower layer must trace to the one above.
   a high-level prompt, treat planning and execution as separate steps: surface the spec
   (requirements + scenarios + contracts) for confirmation before dispatching writes.
 
+## Mark what is frozen
+
+A freeze is only enforceable if its boundary is visible. In the spec and the design, wrap the
+frozen material — requirement intent, acceptance scenarios, contracts — in a delimiter that
+survives a grep:
+
+```markdown
+<frozen-after-approval reason="human-owned intent — renegotiate with the user, do not edit">
+… requirements · acceptance scenarios · contracts …
+</frozen-after-approval>
+```
+
+Everything outside it — task breakdown, file layout, sequencing, implementation notes — is
+the plan's argument about how to satisfy the frozen part, and the controller may amend it.
+Two questions then become mechanical instead of remembered: whether an edit lands inside the
+frozen region, and whether a review finding's root cause sits inside it (the routing in
+[verification.md](verification.md)).
+
+Applies when work is delegated or spans sessions. Skip it for a single-root-cause fix you
+carry out yourself: with one agent and no worker, there is no boundary to police.
+
 ## Where it enters the control loop
 
 - Step 1 (establish goal/scope/acceptance): produce Requirements + Acceptance scenarios.

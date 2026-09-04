@@ -110,7 +110,7 @@ requirement-orchestrator/
 ├── docs/
 │   └── experience-loop.md        # 经验闭环的设计依据（为何最小化）
 └── references/                   # 按需加载，非一次性全读
-    ├── spec-driven.md            # 规格模型：Requirements / Acceptance Scenarios / Contracts
+    ├── spec-driven.md            # 规格模型：Requirements / Acceptance Scenarios / Contracts；冻结区定界符
     ├── tech-design.md            # 技术设计文档（how）：架构/详设/备选权衡/横切关注点，业界 TDD/RFC 结构
     ├── deliverables.md           # 交付物布局：可发布 docs(prd/tech-design) vs 内部 .ai-work(ledger/plan/lessons)；可发布项目 README/LICENSE/.gitignore
     ├── context-grounding.md      # 分解前接地：架构/依赖/约定/影响面 → 记为事实

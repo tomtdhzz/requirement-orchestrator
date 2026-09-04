@@ -111,7 +111,7 @@ requirement-orchestrator/
 ├── agents/openai.yaml            # display name + default prompt
 ├── docs/experience-loop.md       # design rationale for the experience loop
 └── references/                   # loaded on demand, not read all at once
-    ├── spec-driven.md            # spec model: requirements / acceptance scenarios / contracts
+    ├── spec-driven.md            # spec model: requirements / acceptance scenarios / contracts; frozen-region delimiter
     ├── tech-design.md            # technical design (how): architecture, alternatives, cross-cutting; TDD/RFC structure
     ├── deliverables.md           # artifact layout: publishable docs vs internal .ai-work; publishable-project scaffold
     ├── context-grounding.md      # ground architecture/deps/conventions/blast-radius as facts before decomposing
