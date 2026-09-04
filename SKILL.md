@@ -14,7 +14,7 @@ Turn a software request into independently verifiable work while keeping one con
 - `execute`: dispatch bounded work, review returned results, and complete integration. Enter only when the user authorized implementation or execution.
 - `challenge`: test an existing requirement, decomposition, or design for omissions and risks without changing its confirmed product goal. See [references/challenge.md](references/challenge.md).
 
-These are skill-level semantic modes. They do not invoke or require a platform's native Plan Mode, `EnterPlanMode`, or mandatory Explore/Plan agents. Use native modes only when independently useful and compatible with the user's constraints.
+These are skill-level semantic modes. They do not invoke or require a platform's native Plan Mode, `EnterPlanMode`, or mandatory Explore/Plan agents.
 
 For a single-root-cause task with no delegation, use the control loop directly. Read [references/spec-driven.md](references/spec-driven.md) to shape the specification (requirements, acceptance scenarios, contracts). Read [references/context-grounding.md](references/context-grounding.md) before decomposing in an existing codebase. Read [references/decomposition.md](references/decomposition.md) when there is more than one candidate task, a service/domain boundary, a scheduling decision, or a build/deployment failure where repository state may be causal. Read [references/verification.md](references/verification.md) for acceptance-evidence standards. Read [references/ledger.md](references/ledger.md) when work has multiple tasks, agents, sessions, or platforms. Read [references/mutation.md](references/mutation.md) when execution changes an existing artifact — a rewrite, a delete, a change fanned across several artifacts, or a write to an external system; its read-back rule covers even a single-line edit. Worked runs: [references/examples/feature-example.md](references/examples/feature-example.md) and [references/examples/bug-example.md](references/examples/bug-example.md).
 
@@ -41,7 +41,6 @@ Keep a visible phased TODO in sync with the ledger so the user sees phases and s
 - Drive it with the platform's native task list, never a hand-formatted tree. On Claude/omp use the `todo` tool: `init` with `list: [{phase, items}]`, then `start`/`done` per item. On Codex use its plan/update-plan mechanism.
 - Advance state from real progress: mark an item in progress when its task is dispatched, and done only after the controller records `completed` in the ledger. Phase counts (`N/M`) then track verified acceptance, not dispatch.
 - Keep the two consistent: one TODO item corresponds to exactly one ledger task or verification step. Recompute both together during replanning.
-- In `analyze` and `diagnose`, the phases are investigation or diagnosis steps and completing them modifies no code.
 
 ## Deliverable artifacts
 

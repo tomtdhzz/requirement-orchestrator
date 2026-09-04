@@ -45,6 +45,9 @@ this project uses date-based entries (no semantic version tags yet).
 - `SKILL.md` / `references/knowledge-base.md` — the capability knowledge base is now explicitly optional with a stated fallback (repo + installed skills as prior art), instead of an unconditional control-loop step pointing at an integration that needs an external clone, `$RADAR`, and `python3`; recording a capability that was not actually found is forbidden.
 - `SKILL.md` — the resident parallel gate now matches `references/decomposition.md`: writers may run in parallel only when no two write scopes share a compile/test target (different files inside one package/module are not independent). The two copies had drifted, and `CONTRIBUTING.md` makes the resident one authoritative — so the stale criterion was winning.
 
+### Removed
+- `SKILL.md` — two resident lines no scenario could violate: the self-judged "use native modes only when independently useful" clause (any choice complied) and the Progress-surface restatement that `analyze`/`diagnose` phases modify no code (already covered by the read-only boundary). First use of `CONTRIBUTING.md` → `Retiring a rule`.
+
 ## [2026-09-02] — Initial public release
 
 ### Added
