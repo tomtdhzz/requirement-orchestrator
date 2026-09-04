@@ -39,7 +39,7 @@ The worker must:
 1. read the assigned contract and applicable project instructions;
 2. stay within the authorized write scope;
 3. report discoveries that invalidate dependencies or contracts;
-4. run the specified verification where possible;
+4. run the specified verification; when a step cannot run, return `blocked` with the exact command and the failure it produced — never a substitute claim that it "would pass";
 5. return changed artifacts, verification evidence, remaining risks, and a status of `review`, `blocked`, or `failed`.
 
 The worker must not broaden product scope, change a frozen shared contract, or mark itself completed.
