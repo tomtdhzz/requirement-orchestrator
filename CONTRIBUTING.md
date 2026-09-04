@@ -13,6 +13,7 @@ Thanks for improving Requirement Orchestrator. It is a **methodology skill — M
 ## Where things go
 
 - A new capability/how-to → a `references/*.md`, loaded on demand (not dumped into `SKILL.md`).
+- **A rule must be reachable from the step it governs.** Filing it in the topically right reference is not enough: `references/*` load on demand, so a rule the agent never loads at the moment it applies does not exist. Satisfy one of two forms — the control-loop step that governs the action **links the file directly**, or a file that step already loads **carries a one-jump pointer** to it. Two in-repo examples of the pointer form: `verification.md` links `spec-driven.md` where it needs "frozen region", and `agent-contract.md` points at `verification.md` for the baseline. Evidence for the rule: seven defects of exactly this shape in one cycle, including two rules that were unreachable the day they landed. When the control loop itself is restructured, re-run the reachability map (a narrow read-only audit over `SKILL.md` plus reference section titles) rather than trusting the links to still line up.
 - A hard invariant → a paired `MUST NOT` + "do instead" in `SKILL.md` → `Non-negotiable boundaries`.
 - Project-specific lessons are **not** skill content — they live in a project's `.ai-work/lessons.md` (see `references/experience.md`). Promoting a lesson into this skill is an **opt-in, human-approved** step, committed separately.
 - The mode set or the `SKILL.md` frontmatter changes → update `agents/openai.yaml` in the same commit. It is a second entry point with its own description, CI does not compare them, and a user arriving through it gets whatever mental model that file last stated.
@@ -62,6 +63,7 @@ refs: sharpen parallel gate to compile/test-target boundary
 - [ ] Motivated by real evidence (linked/described)
 - [ ] Gap, consequence class (`irreversible` / `one wasted round` / `noise`) and cost location stated
 - [ ] Retirement condition stated; the touched section was checked against `Retiring a rule`
+- [ ] The rule is reachable from the control-loop step it governs (that step links the file, or a file it already loads points at it)
 - [ ] RFC 2119 force is appropriate; not everything is `MUST`
 - [ ] Prefers grading/consolidation over net-new rules
 - [ ] Links resolve, docs render, no secrets, no `.ai-work/`
