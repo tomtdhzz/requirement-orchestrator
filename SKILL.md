@@ -74,13 +74,13 @@ Discover a missing capability here, not mid-batch. If a required permission or s
 
 These are MUST NOT-level invariants regardless of phrasing; keep them few and sharp. Elsewhere in this skill, grade rule force with RFC 2119 keywords — MUST / SHOULD / MAY, meaningful only in capitals — and use restraint: reserve MUST / MUST NOT for correctness or harm, leave preferences as SHOULD / MAY. Pair every prohibition with the positive "do instead": for agents, negative-only rules are unreliable (they cue the very behavior they forbid), so a small set of hard boundaries plus positive defaults is the robust form, not an ever-growing mandatory checklist.
 
-- Do not treat task-tree position as execution dependency.
-- Do not let workers expand their write scope silently.
+- Do not treat task-tree position as execution dependency. (Do instead: order work only by a recorded `depends_on`.)
+- Workers write only inside their `write_scope`; an out-of-scope need is reported to the controller, not taken. (Disclosing an out-of-scope edit does not authorize it.)
 - Do not run writing agents in parallel unless dependencies are resolved, no two write scopes share a compile/test target, shared contracts are frozen, and validation is independent. (Different files inside one package/module/test target are not independent.)
 - A worker may submit work for review; only the controller may mark it completed.
 - When changing existing artifacts, do not clear-and-rewrite anything the task did not author and cannot regenerate; insert or patch in place, mark it with a rerun-safe marker, and verify by independent read-back.
 - Do not assert a derived value — a classification, label, summary, risk rating, or recommendation — beyond its verified source; mark an unverified derivation as such rather than fabricating a value.
-- Do not activate Trellis merely because `.trellis/` exists.
+- Do not activate Trellis merely because `.trellis/` exists. (Do instead: adopt it only when its escalation signals apply or the user asks.)
 - `analyze` and `diagnose` are read-only **with respect to product code and existing artifacts**; they still write their own deliverables (`docs/prd/`, `docs/tech-design/`) and `.ai-work/` state. Neither a platform permission or native-plan approval, nor the implementation intent of the request that started this work, authorizes editing anything else: "add login for me" authorizes analyzing that request, not editing in the same response. Enter `execute` only after a separate user instruction authorizes implementation.
 - Do not hand off a deliverable without consuming it as its reader will — render the doc, and run the README/usage commands from the repo root exactly as written. (Do instead: render diagrams, run the commands, fix breaks before handoff.)
 - Do not call a standalone project done without a working README, LICENSE, and `.gitignore`, or with internal `.ai-work/` artifacts committed. (Do instead: ship the publishable scaffold; keep orchestration state out of the repo.)
