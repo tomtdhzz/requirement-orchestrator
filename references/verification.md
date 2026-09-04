@@ -97,7 +97,11 @@ review. Without this scoping, findings multiply each round and the review never 
   the fix did not touch; that ground was covered in the first pass.
 - **An out-of-scope observation is recorded, not blocking.** Note it as its own finding
   (ledger evidence, or a deferred item) and let it be scheduled separately. It does not
-  extend this task's loop.
+  extend this task's loop — **unless it breaks an acceptance scenario or a frozen contract**,
+  which blocks and goes back through replanning (control-loop step 7). Without that
+  exception, the round in which a defect surfaced would decide whether it blocks: the same
+  silent-data-loss finding would hold the task in the first pass and be deferrable in the
+  second.
 
 The loop ends when every prior finding is `addressed` and the fix diff introduces nothing
 new. Then the controller applies the review above and records `completed`.
