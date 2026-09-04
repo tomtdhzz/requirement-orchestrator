@@ -50,6 +50,26 @@ A failed or unverifiable result returns to `in_progress` with specific findings;
 never marked `completed`. The controller may make a small correction only when it changes
 no behavior, contract, or scope.
 
+## Routing a finding
+
+Where a finding's root cause sits decides who fixes it. Getting this wrong is what makes a
+spec and its code diverge permanently.
+
+- **Root cause inside the frozen region** ([spec-driven.md](spec-driven.md)) — the intent
+  itself is wrong or missing: revert the change and take it to the user. The controller does
+  not renegotiate frozen intent on its own.
+- **Root cause outside the frozen region** — the intent holds but the plan derived from it
+  does not (wrong module, wrong task boundary, mis-derived acceptance): the controller amends
+  the spec or plan first, then re-dispatches. Patching only the code leaves the next task
+  reading the same wrong plan and reintroducing the defect.
+- **Root cause in the code alone:** return it to its worker for a small fix.
+
+When a finding of the first two kinds exists, code-level findings from the same round are
+moot — that code will be re-derived. Do not spend a round fixing them.
+
+With no delegation the routing still holds; only the actor collapses. You revert and ask
+yourself the same question — intent, plan, or code — before touching anything.
+
 ## Review dispatch
 
 A review is worth only its independence. Do not pre-judge the verdict in the request:
@@ -82,6 +102,15 @@ review. Without this scoping, findings multiply each round and the review never 
 The loop ends when every prior finding is `addressed` and the fix diff introduces nothing
 new. Then the controller applies the review above and records `completed`.
 
+Cap the loop at five rounds per task and record the round count with the task. A repeated
+failure is a signal about the task, not about worker effort: from round four, dispatch a
+fresh worker (or a more capable model) rather than asking the same one to retry unchanged.
+
+**Adjudicate only at the cap.** Deciding earlier that a finding is acceptable, in order to
+end the loop, is pre-judging under another name (see Review dispatch above). At the cap,
+record the decision and what it costs if wrong, park the task, and surface it to the user —
+never mark it `completed` on the strength of the ruling alone.
+
 ## Anti-fabrication
 
 - Claims of test/build/run results must be grounded in an actual run. Unobserved claims are
@@ -102,15 +131,6 @@ and all acceptance scenarios pass together. Record the end-to-end result in
 `integration.final_verification`.
 
 For shippable software, "done" also requires, before declaring complete:
-Cap the loop at five rounds per task and record the round count with the task. A repeated
-failure is a signal about the task, not about worker effort: from round four, dispatch a
-fresh worker (or a more capable model) rather than asking the same one to retry unchanged.
-
-**Adjudicate only at the cap.** Deciding earlier that a finding is acceptable, in order to
-end the loop, is pre-judging under another name (see Review dispatch above). At the cap,
-record the decision and what it costs if wrong, park the task, and surface it to the user —
-never mark it `completed` on the strength of the ruling alone.
-
 
 - non-trivial behavioral units were built test-first (TDD, above);
 - every generated doc renders and every README/usage command runs as written
