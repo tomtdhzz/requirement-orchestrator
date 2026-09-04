@@ -56,7 +56,7 @@ ln -s "$PWD/requirement-orchestrator" ~/.claude/skills/requirement-orchestrator
 | `analyze` | 调查请求与代码、维护 ledger、产出执行蓝图 | 否（默认模式） |
 | `diagnose` | 复现并解释故障，分清确证根因/证据/未知/修复路径 | 否 |
 | `execute` | 派发有界工作、评审回传结果、完成集成 | 是（**需用户单独授权**） |
-| `challenge` | 检验既有需求/分解/设计的遗漏与风险，不改其已确认目标 | 否 |
+| `challenge` | 检验既有需求/分解/设计/**实现**的遗漏与风险，不改其已确认目标（代码或 PR 评审走这个模式） | 否 |
 
 `analyze`、`diagnose` 与 `challenge` 对**产品代码与既有工件**只读，但仍会写自己的交付物（`docs/prd/`、`docs/tech-design/`、发现清单）与 `.ai-work/` 状态。平台权限、原生 plan 批准，以及触发本次工作的原始请求里的实现意图（"帮我加个登录"），都不构成改动其他东西的授权——那句话只授权分析它本身，不授权在同一次回复里动手；必须另有用户指令进入 `execute`。
 
@@ -134,7 +134,7 @@ requirement-orchestrator/
 - 塑造规格（需求/验收场景/契约）→ `spec-driven.md`；在既有代码库里分解前接地 → `context-grounding.md`
 - 非平凡构建的技术设计（架构/详设/备选/横切）→ `tech-design.md`；交付物布局与可发布项目 → `deliverables.md`
 - 多个候选任务 / 服务·领域边界 / 调度决策 / 疑似仓库状态诱发的构建失败 → `decomposition.md`
-- 验收证据标准、根因路由、评审派发、复评收敛与绿基线 → `verification.md`；压力测试既有需求/设计 → `challenge.md`
+- 验收证据标准、根因路由、评审派发、复评收敛与绿基线 → `verification.md`；压力测试既有需求/设计/实现（含代码评审）→ `challenge.md`
 - 多任务、多 agent、跨会话或跨平台 → `ledger.md`；首次派发前 → `agent-contract.md`
 - 改写/删除/跨多个既有工件铺开变更、写外部系统，或任何改既有工件的编辑（含单行）→ `mutation.md`
 - 起点先查已有能力（可选)→ `knowledge-base.md`；沉淀项目教训、或把经验回灌进 skill（opt-in，默认关）→ `experience.md`

@@ -1,9 +1,11 @@
 # Challenge Mode
 
-`challenge` stress-tests an existing requirement, decomposition, or design for omissions and
-risks **without changing its confirmed product goal**. The deliverable is a findings list
-with severity and evidence, not edits. Use it before committing to a plan, or when a plan
-smells too clean.
+`challenge` stress-tests an existing requirement, decomposition, design, or **implementation**
+for omissions and risks **without changing its confirmed product goal**. The deliverable is a
+findings list with severity and evidence, not edits. Use it before committing to a plan, when
+a plan smells too clean, or when the request is to review code that already exists — a review
+asked for as "look at this PR" is a challenge over an implementation, and gets the same
+severity-and-evidence discipline rather than free-form commentary.
 
 ## Method: quality-dimension dialectic
 

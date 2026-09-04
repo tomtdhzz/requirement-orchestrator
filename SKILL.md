@@ -12,7 +12,7 @@ Turn a software request into independently verifiable work while keeping one con
 - `analyze`: investigate the request and codebase, maintain the ledger, and produce an execution blueprint without modifying code. This is the default when implementation was not requested.
 - `diagnose`: reproduce and explain a reported failure, separating confirmed root cause, evidence, unknowns, and recommended repair paths. Diagnosis is the deliverable; do not modify code.
 - `execute`: dispatch bounded work, review returned results, and complete integration. Enter only when the user authorized implementation or execution.
-- `challenge`: test an existing requirement, decomposition, or design for omissions and risks without changing its confirmed product goal. See [references/challenge.md](references/challenge.md).
+- `challenge`: test an existing requirement, decomposition, design, or implementation for omissions and risks without changing its confirmed product goal — a code or PR review is this mode. See [references/challenge.md](references/challenge.md).
 
 These are skill-level semantic modes. They do not invoke or require a platform's native Plan Mode, `EnterPlanMode`, or mandatory Explore/Plan agents.
 
