@@ -102,6 +102,15 @@ and all acceptance scenarios pass together. Record the end-to-end result in
 `integration.final_verification`.
 
 For shippable software, "done" also requires, before declaring complete:
+Cap the loop at five rounds per task and record the round count with the task. A repeated
+failure is a signal about the task, not about worker effort: from round four, dispatch a
+fresh worker (or a more capable model) rather than asking the same one to retry unchanged.
+
+**Adjudicate only at the cap.** Deciding earlier that a finding is acceptable, in order to
+end the loop, is pre-judging under another name (see Review dispatch above). At the cap,
+record the decision and what it costs if wrong, park the task, and surface it to the user —
+never mark it `completed` on the strength of the ruling alone.
+
 
 - non-trivial behavioral units were built test-first (TDD, above);
 - every generated doc renders and every README/usage command runs as written
