@@ -1,6 +1,6 @@
 ---
 name: requirement-orchestrator
-description: Use when a software requirement, feature, bug, service change, or domain change must be decomposed into bounded work, delegated to subagents, and controlled through verification and integration across Codex or Claude.
+description: Use when a software request needs scoping, decomposition and evidence-based acceptance before it can be trusted — a feature, a bug, a service or domain change, in an existing codebase or a new one, on Codex or Claude.
 ---
 
 # Requirement Orchestrator
