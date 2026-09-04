@@ -120,7 +120,7 @@ requirement-orchestrator/
     ├── challenge.md              # stress-testing: quality dimensions + omission/risk list
     ├── ledger.md                 # requirement ledger: machine-state YAML, state machine, provenance, handoff snapshot
     ├── agent-contract.md         # subagent contract: required dispatch fields, worker duties, controller review (short form)
-    ├── mutation.md               # safe bulk change: non-destructive, idempotent, pilot→batch, read-back verify
+    ├── mutation.md               # safe mutation: non-destructive, idempotent, pilot→batch, read-back verify (single-line edits included)
     ├── knowledge-base.md         # consult a capability base first (optional, e.g. skills-radar)
     ├── experience.md             # experience loop: auto project lessons; opt-in skill self-improvement (off by default)
     ├── examples/                 # end-to-end: feature-example.md, bug-example.md
