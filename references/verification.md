@@ -19,11 +19,15 @@ the controller reviews it. It backs control-loop steps 5, 6, and 8.
 No suitable runtime for the changed surface ⇒ verify with a behavioral/smoke test and state
 explicitly that visual verification was not possible.
 
-**Test-first for permanent features (TDD).** Prefer building behavioral units test-first:
-write the failing test (red) and run it to confirm it fails for the right reason, then
-implement to green, then refactor. The red run is itself evidence the test can fail — a test
-that never failed proves nothing. Pure data types and thin adapters may skip the red step,
-but any non-trivial logic (selection, parsing, orchestration) is built red→green→refactor.
+**Test-first for permanent features (TDD).** Build behavioral units test-first: write the
+failing test (red) and run it to confirm it fails for the right reason, then implement to
+green, then refactor. **Record the red run in `tasks[].evidence`** — the failing test's name
+and its failure text. Without that record the discipline cannot be observed to fail: a
+finished repository is byte-identical whether the test came first or was backfilled, so the
+completion gate below would rest on the worker's word, which the review above forbids. In a
+dispatch contract the red run is the first `run`/`expect` pair, with `expect: FAIL — <text>`
+([agent-contract.md](agent-contract.md)). Pure data types and thin adapters may skip the red
+step; any non-trivial logic (selection, parsing, orchestration) is built red→green→refactor.
 
 **Record a green baseline before the first dispatch that changes code.** Run the
 enforcement command bound during grounding — formatter / linter / tests
@@ -136,7 +140,7 @@ and all acceptance scenarios pass together. Record the end-to-end result in
 
 For shippable software, "done" also requires, before declaring complete:
 
-- non-trivial behavioral units were built test-first (TDD, above);
+- non-trivial behavioral units were built test-first **and the red run is recorded in `tasks[].evidence`** (TDD, above);
 - every generated doc renders and every README/usage command runs as written
   (see [deliverables.md](deliverables.md));
 - a standalone project is publishable — README, LICENSE, `.gitignore` — with internal

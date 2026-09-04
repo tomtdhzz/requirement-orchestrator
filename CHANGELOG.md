@@ -10,7 +10,8 @@ is the durable record; see `CONTRIBUTING.md`.
 
 ## [Unreleased]
 
-_Nothing yet._
+### Changed
+- **The test-first gate is now observable**: the red run (failing test name + failure text) is recorded in `tasks[].evidence`, and the completion gate requires that record. Previously a finished repo looked identical whether the test came first or was backfilled, so the gate could not fail.
 
 ## [2026-09-04]
 
