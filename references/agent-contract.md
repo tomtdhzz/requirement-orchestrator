@@ -1,6 +1,6 @@
 # Subagent Contract
 
-Dispatch only when every required field is concrete:
+Dispatch only when every required field is concrete. For a task that changes code, `acceptance` and `verification` are never empty — an empty list is an incomplete contract, not a permissive one, and it makes the controller's later check ("the specified verification actually ran") vacuously true:
 
 ```yaml
 id: T1
