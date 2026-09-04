@@ -55,7 +55,7 @@ refs: sharpen parallel gate to compile/test-target boundary
 - No secrets, tokens, emails, or absolute personal paths. Never commit `.ai-work/`.
 - Keep commits focused; skill-behavior changes are separate commits from docs.
 - When one file carries changes for two concerns — typically `CHANGELOG.md` or a README index — stage per hunk (`git add -p`, or `git apply --cached`), never `git add <file>`, and confirm with `git diff --cached` before committing. `git add <file>` silently pulls the other concern's lines into the commit.
-- Update `CHANGELOG.md` under `[Unreleased]`.
+- `CHANGELOG.md`: add an entry under `[Unreleased]` **only for a change a user of the skill would notice** — a new or altered rule, a boundary, a schema field, a mode's behavior. Internal wording, cross-reference, punctuation and formatting fixes get no entry; the commit body is their record. One entry per change, at most two lines: state what changed for the reader, not how it was implemented. When a batch of work lands, cut it into a dated section (`## [YYYY-MM-DD]`) and consolidate by theme — `[Unreleased]` is not a place for dozens of entries to accumulate.
 
 ## PR checklist
 
