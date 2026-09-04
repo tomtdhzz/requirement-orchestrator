@@ -18,6 +18,8 @@ request:
   scope: []
   acceptance: []
   constraints: []
+  mode: analyze              # analyze | diagnose | execute | challenge
+  execute_authorized: false  # only a user instruction sets this true; quote it
 
 analysis:
   facts: []
@@ -25,6 +27,7 @@ analysis:
   decisions: []
   gaps: []
   risks: []
+  baseline: ""               # enforcement command + its result on the untouched tree
 
 tasks:
   - id: T1
@@ -36,6 +39,7 @@ tasks:
     acceptance: []
     status: pending
     assignee: null
+    round: 0                 # review→fix rounds spent; capped (see verification.md)
     evidence: []
 
 integration:
