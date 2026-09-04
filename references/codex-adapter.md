@@ -10,7 +10,7 @@ The skill modes `analyze`, `diagnose`, `execute`, and `challenge` describe the r
 - Give each subagent the contract from `agent-contract.md` and only its relevant context.
 - Do not copy the entire controller conversation when a clean task context is sufficient.
 - Keep the controller productive while workers run; collect each result into ledger `review` state.
-- Maintain the phased TODO progress surface with Codex's native plan/update-plan mechanism; advance it from ledger state, not from worker self-reports.
+- Progress surface: the phased TODO and its driver are defined once in `SKILL.md`; advance it from ledger state, not from worker self-reports.
 
 ## Control
 

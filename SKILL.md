@@ -38,7 +38,7 @@ In `diagnose`, report the observed or reproduced failure, confirmed root cause a
 Keep a visible phased TODO in sync with the ledger so the user sees phases and step-level progress, not only prose. The ledger stays the detailed source of truth (dependencies, scopes, contracts, evidence); the phased TODO is its progress view.
 
 - Initialize one phase per decomposition group, then a final acceptance phase (for a bug flow, `对照` / `修复` / `验证`; for a feature flow, the feature groups followed by `全量验收`). Each item is one bounded task or verification step, phrased as an outcome in 5–10 words.
-- Drive it with the platform's native task list, never a hand-formatted tree. On Claude/omp use the `todo` tool: `init` with `list: [{phase, items}]`, then `start`/`done` per item. On Codex use its plan/update-plan mechanism.
+- Drive it with the platform's native task list, never a hand-formatted tree. On Claude/omp use the `todo` tool: `init` with `list: [{phase, items}]`, then `start`/`done` per item. On Codex use its plan/update-plan mechanism. Where the platform has no native task list, keep the phased view in the ledger and echo it on each state change — that is the only permitted substitute.
 - Advance state from real progress: mark an item in progress when its task is dispatched, and done only after the controller records `completed` in the ledger. Phase counts (`N/M`) then track verified acceptance, not dispatch.
 - Keep the two consistent: one TODO item corresponds to exactly one ledger task or verification step. Recompute both together during replanning.
 

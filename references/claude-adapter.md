@@ -10,7 +10,7 @@ The skill modes `analyze`, `diagnose`, `execute`, and `challenge` are semantic m
 - Use separate workers only for independently verifiable tasks.
 - Pass required files and decisions explicitly; do not rely on private context from the controlling conversation.
 - Bring results back to the shared ledger in `review` state.
-- Maintain the phased TODO progress surface with the native `todo` tool (`init` with `list: [{phase, items}]`, then `start`/`done`); advance it from ledger state, not from worker self-reports.
+- Progress surface: the phased TODO and its driver are defined once in `SKILL.md`; advance it from ledger state, not from worker self-reports.
 
 ## Control
 

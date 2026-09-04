@@ -76,7 +76,7 @@ ln -s "$PWD/requirement-orchestrator" ~/.claude/skills/requirement-orchestrator
 维护一份与 ledger 同步的**可见分阶段 TODO**，让用户看到阶段与步级进度，而不只是散文。ledger 是详细真相层（依赖/范围/契约/证据），分阶段 TODO 是它的进度视图。
 
 - 每个分解组一个 phase，末尾加一个验收 phase（缺陷流：`对照`/`修复`/`验证`；功能流：各功能组 + `全量验收`）。每项是一个有界任务或验证步，5–10 词的结果式描述。
-- 用平台原生任务列表驱动，绝不手搓树。Claude/omp 用 `todo`（`init` 传 `list:[{phase,items}]`，再逐项 `start`/`done`）；Codex 用其 plan/update-plan。
+- 用平台原生任务列表驱动，绝不手搓树。Claude/omp 用 `todo`（`init` 传 `list:[{phase,items}]`，再逐项 `start`/`done`）；Codex 用其 plan/update-plan。平台没有原生任务列表时，把分阶段视图维护在 ledger 里并在每次状态变更时回显——这是唯一被允许的替代形式。
 - 进度由真实推进驱动：任务派发时标 in-progress，只有 ledger 记 `completed` 才标 done。阶段计数 `N/M` 反映的是已验收，不是已派发。
 
 ## 目标系统预检（Target-system preflight）
