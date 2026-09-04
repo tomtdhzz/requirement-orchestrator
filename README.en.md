@@ -58,7 +58,7 @@ Modes are **semantic**, not a platform's native Plan Mode; they neither require 
 | `execute` | Dispatch bounded work, review returned results, complete integration | Yes (**needs separate user authorization**) |
 | `challenge` | Test an existing requirement/decomposition/design for omissions and risks, without changing its confirmed goal | No |
 
-`analyze` and `diagnose` are read-only **with respect to product code and existing artifacts** — they still write their own deliverables (`docs/prd/`, `docs/tech-design/`) and `.ai-work/` state. Neither a platform permission or native-plan approval, nor the implementation intent of the triggering request ("add login for me"), authorizes editing anything else; entering `execute` requires a separate user instruction.
+`analyze`, `diagnose`, and `challenge` are read-only **with respect to product code and existing artifacts** — they still write their own deliverables (`docs/prd/`, `docs/tech-design/`, a findings list) and `.ai-work/` state. Neither a platform permission or native-plan approval, nor the implementation intent of the triggering request ("add login for me"), authorizes editing anything else; entering `execute` requires a separate user instruction.
 
 ## Control loop
 

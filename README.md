@@ -58,7 +58,7 @@ ln -s "$PWD/requirement-orchestrator" ~/.claude/skills/requirement-orchestrator
 | `execute` | 派发有界工作、评审回传结果、完成集成 | 是（**需用户单独授权**） |
 | `challenge` | 检验既有需求/分解/设计的遗漏与风险，不改其已确认目标 | 否 |
 
-`analyze` 与 `diagnose` 对**产品代码与既有工件**只读，但仍会写自己的交付物（`docs/prd/`、`docs/tech-design/`）与 `.ai-work/` 状态。平台权限、原生 plan 批准，以及触发本次工作的原始请求里的实现意图（"帮我加个登录"），都不构成改动其他东西的授权——那句话只授权分析它本身，不授权在同一次回复里动手；必须另有用户指令进入 `execute`。
+`analyze`、`diagnose` 与 `challenge` 对**产品代码与既有工件**只读，但仍会写自己的交付物（`docs/prd/`、`docs/tech-design/`、发现清单）与 `.ai-work/` 状态。平台权限、原生 plan 批准，以及触发本次工作的原始请求里的实现意图（"帮我加个登录"），都不构成改动其他东西的授权——那句话只授权分析它本身，不授权在同一次回复里动手；必须另有用户指令进入 `execute`。
 
 ## 控制循环
 
