@@ -50,6 +50,12 @@ A worker submits `review`; only the controller records `completed`, after checki
   there is a hallucination signal, not a clerical slip: re-check the artifacts before
   recording any state.
 
+**Judge the diff, not the report.** Record the commit the worker started from when you
+dispatch it (`tasks[].base_commit`), and review `base_commit..HEAD` yourself. Never use
+`HEAD~1`: it silently truncates a task that landed several commits, so the review then covers
+the last one and calls the task done. A worker's report says what it believes it did; the
+diff is what it did, and only one of the two is an artifact.
+
 A failed or unverifiable result returns to `in_progress` with specific findings; it is
 never marked `completed`. The controller may make a small correction only when it changes
 no behavior, contract, or scope.

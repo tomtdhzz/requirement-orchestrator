@@ -39,6 +39,7 @@ tasks:
     acceptance: []
     status: pending
     assignee: null
+    base_commit: null        # the commit the worker started from; review base_commit..HEAD
     round: 0                 # review→fix rounds spent; capped (see verification.md)
     evidence: []
 

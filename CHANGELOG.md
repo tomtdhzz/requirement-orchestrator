@@ -16,6 +16,7 @@ is the durable record; see `CONTRIBUTING.md`.
 - **A new rule must be reachable from the control-loop step it governs** — that step links the file, or a file it already loads points at it. Filing a rule in the topically right reference is not enough when references load on demand.
 - **Never create a second spec source**: when the repo already holds the spec (a framework's directory, a wiki page, an issue), work from it and record its location in the ledger. This skill owns delegation and acceptance, not spec production — the composition promised in the README's non-goals is now an actual rule.
 - **The parallel gate must leave a table**: before dispatching writers concurrently, record one row per task pair sharing a file, compile/test target or interface. An unrecorded scan does not count as one. The resident gate's second condition now reads "no two write scopes share a compile/test target".
+- **The controller judges the diff, not the report**: the commit a worker started from is recorded as `tasks[].base_commit` and the review covers `base_commit..HEAD` — never `HEAD~1`, which silently truncates a task that landed several commits.
 
 ## [2026-09-04]
 
