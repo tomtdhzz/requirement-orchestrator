@@ -32,6 +32,8 @@ An expectation a third party could not observe — "works correctly", "no regres
 
 Before the first dispatch that changes code, record the baseline result of the project's enforcement command — formatter / linter / tests, as bound during grounding — in the ledger; a later failure is otherwise unattributable (see [verification.md](verification.md)).
 
+Dispatching writers concurrently additionally requires the parallel gate's recorded scan — one row per task pair sharing a file, a compile/test target, or an interface ([decomposition.md](decomposition.md)). An unrecorded scan does not count as one.
+
 ## Worker obligations
 
 The worker must:

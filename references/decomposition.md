@@ -38,13 +38,15 @@ Record `depends_on`; never infer execution order from parent/child position. Fre
 Writing tasks may run in parallel only when all are true:
 
 - dependencies are resolved;
-- write scopes do not overlap;
+- no two write scopes share a compile/test target;
 - shared contracts are frozen;
 - validation can run independently.
 
 Different files, services, repositories, or AI platforms do not by themselves prove independence.
 
 The unit of independent validation is the toolchain's compile/test target, not the file. Two tasks that edit different files in the same package/module/test target cannot validate independently — one's half-written file breaks the other's build or test run. Split parallel writing at that boundary (e.g. one agent per Go package or per service, not per file inside a shared package); if work must share a compile unit, serialize it or give it to one agent.
+
+**The gate leaves a table, not a verdict.** Before dispatching writers concurrently, write one row per pair of tasks that share a file, a compile/test target, or an interface: the pair, what they share, and the conclusion. "The scan is clean" without those rows is not a scan that was run — it is a recollection, and the parallel gate is exactly the judgment least safe to leave unrecorded. Keep the rows with the ledger; a later failure is then attributable to a pair that was cleared, not to a decision nobody can reconstruct.
 
 ## Replanning
 
