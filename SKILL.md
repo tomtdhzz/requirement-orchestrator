@@ -62,6 +62,10 @@ Before dispatching writes to any system other than the local working tree — a 
 
 Discover a missing capability here, not mid-batch. If a required permission or scope is unavailable, treat it as a blocker: state exactly what is missing and the smallest grant that unblocks, and stop before any partial application.
 
+## When to stop and ask
+
+Beyond the gates named elsewhere — the user instruction that opens `execute`, confirmation before widening a write scope, and the acceptance phase the plan itself schedules — four things stop a run, and only these: an irreversible or destructive operation; a security-sensitive action; a side effect outside the working tree that norms say you ask about first (a merge, a push to a shared branch, a publish, a write to an external system); and a plan so broken that every path forward is a guess. Everything else — a conflict, an ambiguity, a plan defect, a judgment call — the controller decides and records in the ledger's `analysis.decisions`: what was decided, why, and what it costs if wrong. Surface those decisions when the work is handed back. A run parked on a question the controller could have settled costs the user a day; a wrong decision costs a rework they can see and undo.
+
 ## Platform routing
 
 - For Codex, read [references/codex-adapter.md](references/codex-adapter.md).

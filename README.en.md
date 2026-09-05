@@ -88,6 +88,10 @@ Before bulk-writing to any system **outside** the local working tree (wiki, tick
 
 Discover a missing capability here, not mid-batch. If a required permission/scope is unavailable, treat it as a blocker: state what is missing and the smallest grant that unblocks, and stop before any partial write.
 
+## When to stop and ask
+
+Beyond the gates already in place (the instruction that opens `execute`, confirmation before widening a write scope, the acceptance phase the plan schedules), **only four things** interrupt a run: an irreversible or destructive operation; a security-sensitive action; a side effect outside the working tree (a merge, a push to a shared branch, a publish, an external write); and a plan so broken that every path forward is a guess. Everything else — conflicts, ambiguities, plan defects, judgment calls — the controller decides and records in the ledger's `analysis.decisions` (what, why, cost if wrong), surfacing them at handback. **Parking on a question the controller could settle costs you a day; a wrong call costs a rework you can see and undo.**
+
 ## Non-negotiable boundaries
 
 These are MUST NOT-level invariants; kept few and sharp. Elsewhere, rule force is graded with RFC 2119 (MUST / SHOULD / MAY, meaningful only in capitals) with restraint, and each prohibition is paired with a positive "do instead" — negative-only rules are unreliable for agents.

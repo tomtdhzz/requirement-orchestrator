@@ -18,6 +18,7 @@ is the durable record; see `CONTRIBUTING.md`.
 - **The parallel gate must leave a table**: before dispatching writers concurrently, record one row per task pair sharing a file, compile/test target or interface. An unrecorded scan does not count as one. The resident gate's second condition now reads "no two write scopes share a compile/test target".
 - **The controller judges the diff, not the report**: the commit a worker started from is recorded as `tasks[].base_commit` and the review covers `base_commit..HEAD` — never `HEAD~1`, which silently truncates a task that landed several commits.
 - **Dismissing a finding needs evidence too**: a re-review may verdict `false` (with what disproves it) or `unverified` (with what would have to be checked), but a bare "not an issue" is rejected — the anti-fabrication standard applies to rejecting a claim as much as to asserting one.
+- **Only four things stop a run** (irreversible/destructive operation, security-sensitive action, side effect outside the working tree, a plan too broken to guess at) beyond the gates already named; everything else the controller decides and records in `analysis.decisions` with its cost-if-wrong. READMEs (zh/en) carry the same section.
 
 ## [2026-09-04]
 
