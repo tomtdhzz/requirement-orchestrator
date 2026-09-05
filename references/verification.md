@@ -101,6 +101,12 @@ review. Without this scoping, findings multiply each round and the review never 
 
 - **Verdict every prior finding** as `addressed` or `not addressed`, one line each. Silently
   dropping or merging a finding is a defect in the review itself, not a shortcut.
+- **Dismissing a finding needs evidence too.** A finding may also be verdicted `false` (it
+  was checked and the bad outcome does not happen) or `unverified` (it could not be checked
+  here). `false` carries what disproves it — the command run, the code path read, the output
+  seen; `unverified` carries what would have to be checked and by whom. A bare "not an issue"
+  is a derived claim beyond its verified source, which the anti-fabrication rule below
+  forbids on the asserting side; the same standard applies to rejecting.
 - **"Attempted" is not addressed.** A code change in the right area, a partial fix, or a
   stated intention does not clear a finding — the specific defect must no longer exist.
 - **Scope the fresh look to the fix diff:** what the fix itself broke. Do not re-audit code
