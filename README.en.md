@@ -86,6 +86,8 @@ It returns the spec, acceptance scenarios, task split and parallel verdict, then
 
 The specification is [`SKILL.md`](SKILL.md) (90 lines, always resident); detail lives in [`references/`](references) (15 files, loaded on demand). On conflict, `SKILL.md` wins.
 
+The judgement underneath it — **what must be frozen before work fans out** — is written up in [`docs/freeze-before-fanout.en.md`](docs/freeze-before-fanout.en.md).
+
 ## Contributing
 
 See [CONTRIBUTING.md](CONTRIBUTING.md). A rule change states four things:

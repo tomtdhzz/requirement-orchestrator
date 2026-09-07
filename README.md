@@ -86,6 +86,8 @@ npx skills add tomtdhzz/requirement-orchestrator -g -y
 
 规范见 [`SKILL.md`](SKILL.md)（90 行，常驻）；细节见 [`references/`](references)（15 篇，按需加载）。冲突时以 `SKILL.md` 为准。
 
+它背后的那一个判断——**扇出之前必须先定住什么**——写在 [`docs/freeze-before-fanout.md`](docs/freeze-before-fanout.md)。
+
 ## 贡献指南
 
 见 [CONTRIBUTING.md](CONTRIBUTING.md)。提规则改动必须写明四件事：
