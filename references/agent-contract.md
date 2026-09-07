@@ -35,7 +35,7 @@ An expectation a third party could not observe — "works correctly", "no regres
 
 Before the first dispatch that changes code, record the baseline result of the project's enforcement command — formatter / linter / tests, as bound during grounding — in the ledger; a later failure is otherwise unattributable (see [verification.md](verification.md)).
 
-Dispatching writers concurrently additionally requires the parallel gate's recorded scan — one row per task pair sharing a file, a compile/test target, or an interface ([decomposition.md](decomposition.md)). An unrecorded scan does not count as one.
+Dispatching writers concurrently additionally requires the parallel gate's recorded scan — one row per task pair sharing a file, a compile/test target, or an interface ([decomposition.md](decomposition.md)). An unrecorded scan does not count as one. Under concurrent fanout each worker's `verification` MUST be limited to paths inside its own `write_scope`: a repository-wide check run while siblings hold half-finished edits observes their work, so neither its pass nor its failure is attributable. The controller runs the repository-wide command once, at integration, against the merged result. Where the only enforcement command cannot be narrowed this way, the tasks do not clear the parallel gate — sequence them.
 
 ## Worker obligations
 
