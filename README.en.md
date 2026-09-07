@@ -1,7 +1,8 @@
 # Requirement Orchestrator
 
 > **Make an agent's "done" a checkable fact.**
-> Zero install · no spec required · parallel safety decided by the **compile/test target**, completion by the **`base_commit..HEAD` diff**.
+> Zero install, no existing spec document needed — but **"what counts as done" must exist before work starts**: one requirement plus one acceptance scenario is enough to begin.
+> Parallel safety is decided by the **compile/test target**, completion by the **`base_commit..HEAD` diff**.
 
 **English** · [中文](README.md) · [MIT](LICENSE) · Markdown only, zero dependencies
 
@@ -9,7 +10,7 @@
 
 A **delegation-and-acceptance control layer** for AI coding agents. It answers two questions: **what must be frozen before work fans out**, and **what counts as done**.
 
-- Zero prerequisites: nothing to install, no spec required, no repo restructuring.
+- Zero prerequisites: nothing to install, no repo restructuring, no existing spec document — if there is none, a thin one is stood up (one requirement, one acceptance scenario).
 - Criteria, not impressions: parallel safety is decided by the **compile/test target**; completion by the **`base_commit..HEAD` diff**.
 - Built for one person. With one human and several agents, the bottleneck is acceptance, not throughput.
 
