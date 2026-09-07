@@ -1,5 +1,8 @@
 # Requirement Orchestrator
 
+> **Make an agent's "done" a checkable fact.**
+> Zero install · no spec required · parallel safety decided by the **compile/test target**, completion by the **`base_commit..HEAD` diff**.
+
 **English** · [中文](README.md) · [MIT](LICENSE) · Markdown only, zero dependencies
 
 ## TL;DR

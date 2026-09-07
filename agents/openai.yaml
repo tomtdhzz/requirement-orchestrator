@@ -1,4 +1,4 @@
 interface:
   display_name: "Requirement Orchestrator"
-  short_description: "Delegation and acceptance control — zero prerequisites, evidence-gated"
+  short_description: "Make an agent's 'done' a checkable fact — zero install, no spec required"
   default_prompt: "Use $requirement-orchestrator for this software request: analyze it (or diagnose it, if something already failed), challenge a plan on request, and coordinate verified delivery only after execution is authorized."

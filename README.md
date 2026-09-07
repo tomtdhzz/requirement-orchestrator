@@ -1,5 +1,8 @@
 # Requirement Orchestrator
 
+> **让 agent 说的「做完了」变成可核对的事实。**
+> 零安装 · 不要求 spec · 并行安全看**编译/测试目标**，完成与否看 **`base_commit..HEAD` 的 diff**。
+
 **中文** · [English](README.en.md) · [MIT](LICENSE) · 纯 Markdown，零依赖
 
 ## TL;DR
