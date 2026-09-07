@@ -3,6 +3,7 @@
 Dispatch only when every required field is concrete. For a task that changes code, `acceptance` and `verification` are never empty — an empty list is an incomplete contract, not a permissive one, and it makes the controller's later check ("the specified verification actually ran") vacuously true:
 
 ```yaml
+workspace: "/absolute/path/to/repo"
 id: T1
 goal: "One observable outcome"
 background: "Why this work exists"
@@ -17,6 +18,8 @@ verification: []
 ```
 
 Provide only the relevant ledger facts, contracts, project instructions, and source locations. Do not send the full conversation or unrelated task branches.
+
+`workspace` is absolute, and every other path — `read_scope`, `write_scope`, `deliverables`, and each `run` command — resolves against it. A worker's own working directory MAY be a different repository, and a relative scope silently resolves there: the edit lands in the wrong tree, or the command reports on one. State the root; do not assume the worker shares yours.
 
 `verification:` entries are runnable, not intentions. Each is a command plus the observable outcome it must produce; a step that must fail first names the exact failure text, so the worker cannot mistake a different failure for the expected one:
 
