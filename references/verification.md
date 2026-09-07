@@ -60,6 +60,19 @@ A failed or unverifiable result returns to `in_progress` with specific findings;
 never marked `completed`. The controller may make a small correction only when it changes
 no behavior, contract, or scope.
 
+## Stopgap deliveries
+
+A delivery that mitigates a symptom without removing the root cause is a **stopgap**: a
+bug-side rollback, flag, or fallback; a requirement-side hardcode or main-path-only
+implementation; a deferred review finding. Stopgaps are legitimate — an *undeclared* one
+is symptom-masking, which [decomposition.md](decomposition.md) forbids. A declared one
+MUST carry `reason`, `removal_condition`, `follow_up` in `tasks[].stopgap`
+([ledger.md](ledger.md)); `removal_condition` MUST be a decidable event or date, not
+"later", and `follow_up` SHOULD be a registered task id, not prose. The stopgap task
+itself MAY be recorded `completed` once those three fields are filled; the requirement or
+root cause it covers MUST NOT be — it stays open, or becomes that follow-up. Accepting
+stopgap evidence as requirement completion is the specific failure this rule blocks.
+
 ## Routing a finding
 
 Where a finding's root cause sits decides who fixes it. Getting this wrong is what makes a
@@ -148,7 +161,9 @@ never mark it `completed` on the strength of the ruling alone.
 
 Declare the request complete only when task-level checks, every frozen cross-task contract,
 and all acceptance scenarios pass together. Record the end-to-end result in
-`integration.final_verification`.
+`integration.final_verification`. An unretired stopgap (above) blocks this gate: MUST NOT
+declare the request complete while one stands, unless the user explicitly accepts it and
+that acceptance is recorded in the ledger.
 
 For shippable software, "done" also requires, before declaring complete:
 

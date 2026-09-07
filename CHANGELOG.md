@@ -21,6 +21,7 @@ is the durable record; see `CONTRIBUTING.md`.
 - **Only four things stop a run** (irreversible/destructive operation, security-sensitive action, side effect outside the working tree, a plan too broken to guess at) beyond the gates already named; everything else the controller decides and records in `analysis.decisions` with its cost-if-wrong. READMEs (zh/en) carry the same section.
 - **READMEs cut to a five-section minimum** (130 → 98 lines each): TL;DR · features · quick start · configuration · contributing. Prose replaced by tables (what it solves, modes, where state lands, requirements, the four things a rule change must state); non-goals and limitations kept as bullet groups inside features, since the project's own deliverable standard requires them in the README.
 - **A one-line description now opens both READMEs**: "Make an agent's 'done' a checkable fact", followed by what backs it — zero install, no existing spec document needed, but acceptance criteria must exist before work starts. The earlier "no spec required" phrasing read as "no discipline required" and is gone; `agents/openai.yaml` says the same.
+- **A stopgap must declare how it retires**: a delivery that mitigates without removing the root cause records `reason`, `removal_condition` and `follow_up` in `tasks[].stopgap`. The stopgap's own task may close; the requirement it covers may not, and an unretired stopgap blocks the end-to-end gate.
 
 ## [2026-09-04]
 

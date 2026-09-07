@@ -42,6 +42,7 @@ tasks:
     base_commit: null        # the commit the worker started from; review base_commit..HEAD
     round: 0                 # review→fix rounds spent; capped (see verification.md)
     evidence: []
+    stopgap: null            # when the delivery mitigates instead of fixing: {reason, removal_condition, follow_up}
 
 integration:
   cross_task_contracts: []
@@ -49,6 +50,8 @@ integration:
   final_verification: []
   next_action: ""
 ```
+
+A non-empty `tasks[].stopgap` means the root cause is still present: the stopgap task may close, but the requirement or root cause it covers MUST NOT be recorded `completed` on that evidence, and an unretired one blocks the end-to-end gate (see [verification.md](verification.md)).
 
 ## Derived output carries provenance
 
