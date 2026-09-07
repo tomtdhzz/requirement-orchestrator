@@ -19,6 +19,7 @@ is the durable record; see `CONTRIBUTING.md`.
 - **The controller judges the diff, not the report**: the commit a worker started from is recorded as `tasks[].base_commit` and the review covers `base_commit..HEAD` — never `HEAD~1`, which silently truncates a task that landed several commits.
 - **Dismissing a finding needs evidence too**: a re-review may verdict `false` (with what disproves it) or `unverified` (with what would have to be checked), but a bare "not an issue" is rejected — the anti-fabrication standard applies to rejecting a claim as much as to asserting one.
 - **Only four things stop a run** (irreversible/destructive operation, security-sensitive action, side effect outside the working tree, a plan too broken to guess at) beyond the gates already named; everything else the controller decides and records in `analysis.decisions` with its cost-if-wrong. READMEs (zh/en) carry the same section.
+- **READMEs state the positioning**: a delegation-and-acceptance control layer on top of however you already work, with three pillars (zero prerequisites · input-shape agnostic · authority separated from evidence) and a `How it differs` section covering both same-layer frameworks and agent hosts. `agents/openai.yaml` short description synced.
 
 ## [2026-09-04]
 

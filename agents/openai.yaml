@@ -1,4 +1,4 @@
 interface:
   display_name: "Requirement Orchestrator"
-  short_description: "Scope, decompose and accept software work on evidence"
+  short_description: "Delegation and acceptance control — zero prerequisites, evidence-gated"
   default_prompt: "Use $requirement-orchestrator for this software request: analyze it (or diagnose it, if something already failed), challenge a plan on request, and coordinate verified delivery only after execution is authorized."

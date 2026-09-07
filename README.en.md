@@ -2,13 +2,25 @@
 
 **English** · [中文](README.md)
 
-Turn a software request into **independently verifiable** work while a **single controlling agent** stays responsible for scope, dependencies, evidence, and integration. It is an orchestrator, not a prompt generator.
+**A delegation-and-acceptance control layer that sits on top of however you already work.** If the repo runs a spec framework, use its spec; if it has none, stand up the thinnest spec that can be accepted. This skill owns exactly two questions — **what must be frozen before work fans out**, and **what counts as done**.
 
 > The specification lives in [`SKILL.md`](SKILL.md); this README is a human-facing guide. On any conflict, `SKILL.md` wins.
 
+## Three pillars
+
+- **Zero prerequisites.** No spec required, nothing to install, no task store, no account. One spoken sentence of a request is enough to start.
+- **Input-shape agnostic.** A feature, a change, a bug, "take a look at this code" — one control loop. A spec may be as thin as **one requirement plus one acceptance scenario**; thin is not a compromise, it is the cheapest form in which "what counts as done" exists before work starts. A bug is just one input shape, distinguished only by one extra step: reproduce before claiming a root cause.
+- **Authority separated from evidence.** A worker may only submit `review`; only the controlling agent records `completed`, and it judges the `base_commit..HEAD` diff rather than the worker's report.
+
 ## The pain it solves
 
-Multi-step agent work in a real codebase usually fails not from bad logic but from: scope quietly creeping, context lost or stale, silent parallel-write conflicts, "done" declared without evidence, and no single owner of state — worst of all across sessions and platforms (Codex ↔ Claude). This skill pins "decompose → delegate → integrate" into a reproducible, auditable process using **one controlling agent + a ledger + frozen contracts + evidence gates**.
+Multi-step agent work in a real codebase usually fails not from bad logic but from: scope quietly creeping, context lost or stale, parallel writers silently breaking each other, "done" declared without evidence, and no single owner of state — worst of all across sessions and platforms (Codex ↔ Claude). This skill pins "decompose → delegate → integrate" into a reproducible, auditable process using **one controlling agent + a ledger + frozen contracts + evidence gates**.
+
+## How it differs
+
+**From same-layer spec and task frameworks**: every one of them needs an artifact before you can start — spec-kit needs `.specify/` and a spec, OpenSpec needs the `openspec/specs` current-truth layer, BMAD needs `uv` plus a renderer and a PRD, ccpm needs a GitHub issue and `gh` auth, task-master needs `.taskmaster/` and an API key. This one needs **nothing**. "Lightweight" is an adjective; "zero prerequisites" is a checkable fact.
+
+**From the agent host (harness)**: a host provides *what can be done* — dispatch, isolation, tools, permissions — not *what counts as done*. A host with an orchestrator mode gives you **routing, not a gate**: work is split, sent out and collected, with nothing answering why it is finished, so its built-in "done" is the model's own account. Meanwhile a host can do what this skill cannot — **block** an action (hooks, CI). The two compose: **capabilities get absorbed by hosts; criteria do not.**
 
 ## Requirements & dependencies
 
