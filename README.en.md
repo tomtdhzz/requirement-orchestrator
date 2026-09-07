@@ -4,7 +4,48 @@
 
 **A delegation-and-acceptance control layer that sits on top of however you already work.** If the repo runs a spec framework, use its spec; if it has none, stand up the thinnest spec that can be accepted. This skill owns exactly two questions — **what must be frozen before work fans out**, and **what counts as done**.
 
+**Why it exists**: for one person. When one person drives several agents at once, the bottleneck is not throughput but **acceptance** — so this optimizes attention at the few gates that cannot be delegated (freezes and acceptance), not process completeness. Team collaboration, task sync, boards and dashboards are explicit non-goals.
+
 > The specification lives in [`SKILL.md`](SKILL.md); this README is a human-facing guide. On any conflict, `SKILL.md` wins.
+
+## 60 seconds: what it actually does
+
+You say: **"Add rate limiting to the orders API."** No spec, no ticket, nothing installed.
+
+What comes back is **not a paragraph of plan prose, but four checkable things**:
+
+**1. A spec thin enough to accept** (stood up on the spot; if the repo has one, that one is used)
+
+```
+R1  an authenticated caller over quota is rejected
+A1  Given a user at the limit When another request Then 429 with Retry-After
+Contract (frozen)  RateLimiter.check(key) -> {allowed, retryAfter}
+```
+
+**2. A parallel-safety verdict that must leave a table**
+
+```
+T2 (redisLimiter.ts) x T3 (mw/rateLimit.ts)
+shares: one tsc / jest target
+verdict: not parallel-safe — a half-written file breaks the other's run and
+         neither result is attributable → T3 depends on T2
+```
+
+> The criterion is the **compile/test target**, not "they touch different files". The latter is the common wrong answer.
+
+**3. A dispatch contract that carries commands, not intentions**
+
+```yaml
+verification:
+  - run: "npx jest test/api.rateLimit.int.spec.ts"
+    expect: "PASS — 429 body + Retry-After header present"
+```
+
+**4. Completion judged on the diff, not the report**
+
+A worker returning "done" does not settle it. The controller reads the actual `base_commit..HEAD` change, re-runs the command above, checks the write scope was not exceeded — **and only then** records `completed`.
+
+**Without it, the default**: the worker says it is done, and you either go look yourself or you do not. This skill turns "go look yourself" into a set of actions with criteria, a trail, and enough structure to hand to someone else.
 
 ## Three pillars
 
@@ -17,6 +58,15 @@
 Multi-step agent work in a real codebase usually fails not from bad logic but from: scope quietly creeping, context lost or stale, parallel writers silently breaking each other, "done" declared without evidence, and no single owner of state — worst of all across sessions and platforms (Codex ↔ Claude). This skill pins "decompose → delegate → integrate" into a reproducible, auditable process using **one controlling agent + a ledger + frozen contracts + evidence gates**.
 
 ## How it differs
+
+**At a glance** (the three questions people actually ask):
+
+| You ask | superpowers | A host's orchestrator mode | This skill |
+|---|---|---|---|
+| What must exist before I start? | install a skills collection, brainstorm a plan doc first | nothing (but also no spec or acceptance concept) | **nothing** |
+| Who decides it is done? | evidence before claims, self-assessed by the doer | the model's own account | **the controller, judging the `base_commit..HEAD` diff; a worker may only report `review`** |
+| Can two tasks run at once? | heuristic: different test files / subsystems | not decided | **criterion: do they share a compile/test target — and the scan must be recorded** |
+| Does it survive a host change? | Claude-centric | bound to that host | **plain Markdown, works as-is elsewhere** |
 
 **From same-layer spec and task frameworks**: every one of them needs an artifact before you can start — spec-kit needs `.specify/` and a spec, OpenSpec needs the `openspec/specs` current-truth layer, BMAD needs `uv` plus a renderer and a PRD, ccpm needs a GitHub issue and `gh` auth, task-master needs `.taskmaster/` and an API key. This one needs **nothing**. "Lightweight" is an adjective; "zero prerequisites" is a checkable fact.
 
