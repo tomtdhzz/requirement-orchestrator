@@ -23,6 +23,7 @@ is the durable record; see `CONTRIBUTING.md`.
 - **A one-line description now opens both READMEs**: "Make an agent's 'done' a checkable fact", followed by what backs it — zero install, no existing spec document needed, but acceptance criteria must exist before work starts. The earlier "no spec required" phrasing read as "no discipline required" and is gone; `agents/openai.yaml` says the same.
 - **A stopgap must declare how it retires**: a delivery that mitigates without removing the root cause records `reason`, `removal_condition` and `follow_up` in `tasks[].stopgap`. The stopgap's own task may close; the requirement it covers may not, and an unretired stopgap blocks the end-to-end gate.
 
+- **A rule change now declares a strength tier** — 1 followed by hand, 2 a `references/*` paragraph, 3 a resident `SKILL.md` line — promoted only on evidence: a second use for 1→2, one observed unreachability for 2→3, `irreversible` the only skip (`CONTRIBUTING.md`).
 ## [2026-09-04]
 
 ### Added

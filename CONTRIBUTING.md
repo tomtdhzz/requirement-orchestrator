@@ -18,6 +18,28 @@ Thanks for improving Requirement Orchestrator. It is a **methodology skill — M
 - Project-specific lessons are **not** skill content — they live in a project's `.ai-work/lessons.md` (see `references/experience.md`). Promoting a lesson into this skill is an **opt-in, human-approved** step, committed separately.
 - The mode set or the `SKILL.md` frontmatter changes → update `agents/openai.yaml` in the same commit. It is a second entry point with its own description, CI does not compare them, and a user arriving through it gets whatever mental model that file last stated.
 
+## Rule strength ladder
+
+The admission frame above decides **whether** a rule gets in; this section decides **what shape it lands in**. Default to Tier 1: a rule enters at the weakest form that could work and moves up only on evidence.
+
+| Tier | Form | Cost | Cost to retire |
+| --- | --- | --- | --- |
+| 1 | Followed by hand in this task; written into no file | none | none |
+| 2 | A paragraph in `references/*.md`, loaded on demand, read only at the step that needs it | the tokens of that file, when that file loads | delete a paragraph |
+| 3 | A line in `SKILL.md`, resident | paid every session, whether or not the rule applies | delete a line — but it has already shaped every session that ran |
+
+Promotion is gated on something observable, not on how important the rule feels:
+
+- **1 → 2 — the second time.** Write the rule down when you reach for the same mechanism a *second* time. Reaching for it once is usually novelty, not a pattern.
+- **2 → 3 — one observed unreachability.** Promote to resident only after the rule has actually failed to be read at the moment it applied. The green-baseline rule walked exactly this path: it landed in `references/verification.md` and looked finished; dispatch turned out never to load it, so it gained a one-jump pointer; an audit then found the precondition it depends on had never existed, and step 1 of the control loop had to link it before it was executable at all.
+- **The only skip** is consequence class `irreversible`: a rule that stops overwritten work or an unauthorized edit may start at Tier 3.
+
+**Account for the cost before adopting, not after.** Say which of the three a mechanism spends: resident `SKILL.md` (paid every session), an extra agent round-trip (paid per task), human attention (paid at every gate). A mechanism that spends all three and lets you switch none of them off is rejected however correct it is.
+
+**Adoption costs roughly three times what writing costs.** Writing it down, making it reachable from the step it governs, and making its precondition exist are three separate acts; skip either of the last two and you have a rule that exists and never fires. That is why the default is Tier 1.
+
+This section retires under `Retiring a rule`'s first condition: if three months pass with no PR citing a tier, nobody is grading and the ladder is only ceremony — delete it.
+
 ## Retiring a rule
 
 Adding is gated; removing must be too, or the set only grows. Before adding any rule, run this check over the section you are about to touch and remove what it catches — that keeps net size roughly flat instead of monotonically rising.
@@ -65,7 +87,7 @@ refs: sharpen parallel gate to compile/test-target boundary
 - [ ] Retirement condition stated; the touched section was checked against `Retiring a rule`
 - [ ] The rule is reachable from the control-loop step it governs (that step links the file, or a file it already loads points at it)
 - [ ] RFC 2119 force is appropriate; not everything is `MUST`
-- [ ] Prefers grading/consolidation over net-new rules
+- [ ] Strength tier declared (Tier 1 / 2 / 3); a Tier 3 rule states why it must be resident
 - [ ] Links resolve, docs render, no secrets, no `.ai-work/`
 - [ ] `CHANGELOG.md` updated
 - [ ] Commit messages follow Conventional Commits with a what/why body
