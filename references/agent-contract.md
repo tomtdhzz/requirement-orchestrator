@@ -43,11 +43,13 @@ The worker must:
 
 1. read the assigned contract and applicable project instructions;
 2. stay within the authorized write scope;
-3. report discoveries that invalidate dependencies or contracts;
+3. resolve routine implementation details and minor missing information autonomously from existing repository conventions, and escalate only a discovery that invalidates a dependency, a frozen contract, or an acceptance scenario, or an architectural blocker with no in-scope resolution;
 4. run the specified verification; when a step cannot run, return `blocked` with the exact command and the failure it produced — never a substitute claim that it "would pass";
 5. return changed artifacts, verification evidence, remaining risks, and a status of `review`, `blocked`, or `failed`.
 
 The worker must not broaden product scope, change a frozen shared contract, or mark itself completed.
+
+An escalation that would change the plan is a **change request**, not a silent edit. The worker returns four things to the controller — its task, the specific problem (naming the artifact, dependency, or contract it points at), the impact on the current work, and a suggested resolution — and does not edit outside its write scope to route around the problem. A question that a repository convention already answers is not a change request; that over-escalation, one trivial question per worker, is the flood this gate exists to stop.
 
 ## Review dispatch
 

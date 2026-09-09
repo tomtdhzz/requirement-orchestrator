@@ -26,6 +26,7 @@ is the durable record; see `CONTRIBUTING.md`.
 - **A rule change now declares a strength tier** — 1 followed by hand, 2 a `references/*` paragraph, 3 a resident `SKILL.md` line — promoted only on evidence: a second use for 1→2, one observed unreachability for 2→3, `irreversible` the only skip (`CONTRIBUTING.md`).
 - **A dispatch contract states its `workspace`** — an absolute repo root that every `read_scope`, `write_scope` and `run` command resolves against. A worker's working directory may be a different repository, where a relative scope resolves silently and the edit lands in the wrong tree.
 - **Under concurrent fanout, a worker's verification is limited to its own `write_scope`**: a repository-wide check run while siblings hold half-finished edits is unattributable either way. The controller runs the repo-wide command once at integration; a target that cannot be narrowed means the tasks sequence instead.
+- **A worker resolves routine details itself and escalates only a real conflict**: an escalation that would change the plan is a *change request* — task, problem, impact, suggested resolution — returned to the controller, not a silent edit routed around the write scope. A question a repository convention already answers is the over-escalation this gate stops; obligation #3 was previously unbounded ("report discoveries") and read as "report everything".
 
 ## [2026-09-04]
 
