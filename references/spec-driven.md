@@ -39,6 +39,14 @@ Produce these three, in order. Each lower layer must trace to the one above.
   requirement with no scenario is unverifiable and blocks the spec.
 - **Contracts precede implementation.** If two tasks touch a shared boundary, write the
   contract first and freeze it. Unfrozen shared contract ⇒ tasks are not parallel-safe.
+- **Ground a contract before freezing it; never freeze a guessed shape.** When the
+  contract *is* the schema of a produced or external artifact — a parser's output, an
+  API's real response, a scraped structure — its shape cannot be known until a real
+  instance exists, and freezing a guess makes every task inherit the wrong contract.
+  Sample one real instance first (a bounded read-only spike, or one piloted vertical
+  slice when the artifact is the thing being built), take its schema as a verified fact,
+  then freeze and fan out. Sampling to learn a shape is grounding, not implementation,
+  and does not open `execute` on the rest.
 - **The spec is falsifiable.** If nothing could fail it, it says nothing. Every requirement
   needs at least one scenario whose failure would be observable.
 - **Reduce scope only with explicit user approval;** never silently narrow requirements to
