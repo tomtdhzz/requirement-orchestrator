@@ -11,6 +11,7 @@ is the durable record; see `CONTRIBUTING.md`.
 ## [Unreleased]
 
 ### Changed
+- **Successive requirements are versioned iterations**: a follow-on requirement after the first shipped gets its own `.ai-work/iterations/<NN>-<slug>/ledger.md` and a row in a top-level `.ai-work/iterations.md` index (version, date, status, goal, `builds_on`); the ledger's `request` block gains `iteration`/`iteration_slug`/`builds_on`. Flat sibling ledgers carried no ordering or cross-iteration dependency.
 - **The test-first gate is now observable**: the red run (failing test name + failure text) is recorded in `tasks[].evidence`, and the completion gate requires that record. Previously a finished repo looked identical whether the test came first or was backfilled, so the gate could not fail.
 - **Mode selection arbitrates itself**: a request referring to a failure that already happened routes to `diagnose` without the user naming a mode; `analyze` is the default only when nothing has failed. Both requests previously satisfied both modes, and the two deliver different artifacts.
 - **A new rule must be reachable from the control-loop step it governs** — that step links the file, or a file it already loads points at it. Filing a rule in the topically right reference is not enough when references load on demand.

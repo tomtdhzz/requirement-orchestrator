@@ -7,6 +7,7 @@ The ledger is the shared source of truth across agents, sessions, Codex, and Cla
 - A small, single-session task may keep the ledger in the active conversation.
 - Persist it for multi-agent, cross-session, or cross-platform work.
 - Prefer an existing project task location. Otherwise create `.ai-work/ledger.md` directly (or `.ai-work/tasks/<slug>/ledger.md` when several tasks run concurrently) and state the path in your first status line; ask only when the project already has task stores to choose between.
+- Number **successive requirements over a project's lifetime** — a second, third feature after the first shipped. Each is an *iteration*: give it its own `.ai-work/iterations/<NN>-<slug>/ledger.md` (with its own `plan.md`/findings as needed) and record it in a top-level `.ai-work/iterations.md` index — one row per iteration: version, date, status, one-line goal, `builds_on`. This keeps ordering and cross-iteration dependency explicit; flat sibling ledgers (`ledger.md`, `feature-x-ledger.md`, …) carry neither. The per-iteration ledger is the same YAML; its `request.iteration`/`iteration_slug`/`builds_on` tie it to the index. This is the cross-time axis; `tasks/<slug>/` above is the within-one-iteration concurrency axis.
 - In an adopted Trellis flow, map the ledger into `.trellis/tasks/` rather than maintaining a competing task store.
 - The ledger is internal orchestration state, not publishable docs — never under a published `docs/` path; for a publishable project `.ai-work/` is gitignored (see [deliverables.md](deliverables.md)). The YAML format below is unchanged.
 
@@ -14,6 +15,9 @@ Use readable Markdown with one controlled YAML block for machine state:
 
 ```yaml
 request:
+  iteration: 1               # ordinal within the project; each successive requirement increments
+  iteration_slug: ""         # kebab-case name; its home is .ai-work/iterations/<NN>-<slug>/
+  builds_on: []              # iteration ordinals this one depends on ([] for the first)
   goal: ""
   scope: []
   acceptance: []

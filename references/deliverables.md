@@ -12,7 +12,10 @@ docs/                 # publishable — ships in the repo
 .ai-work/             # internal — orchestration state, NOT published
 ├── ledger.md         # requirement ledger (machine-state YAML) — ledger.md
 ├── plan.md           # execution plan mirroring the phased TODO / Progress surface
-└── lessons.md        # experience log — experience.md
+├── lessons.md        # experience log (project-wide) — experience.md
+├── iterations.md     # index of successive requirements: version, date, status, goal, builds_on
+└── iterations/       # one dir per successive requirement over the project's lifetime
+    └── <NN>-<slug>/  # e.g. 02-concurrency-governance/ — its own ledger.md (+ plan/findings)
 ```
 
 ## Rules
@@ -28,6 +31,11 @@ docs/                 # publishable — ships in the repo
 - **Ledger format unchanged, home is internal.** The ledger's YAML still follows
   [ledger.md](ledger.md); its path is `.ai-work/ledger.md` (or `.trellis/tasks/` in an
   adopted Trellis flow) — never a published `docs/` path.
+- **Successive requirements are iterations.** A follow-on requirement after the first shipped
+  gets `.ai-work/iterations/<NN>-<slug>/ledger.md`, and a row in the top-level
+  `.ai-work/iterations.md` index (version, date, status, one-line goal, `builds_on`). Do not
+  drop successive requirements as flat sibling ledgers — they lose ordering and dependency.
+  See the Persistence section of [ledger.md](ledger.md).
 - **Plan mirrors the TODO.** The plan doc is the readable view of the phased TODO
   (Progress surface in SKILL.md); the native task list stays the live driver. One plan item
   ↔ one ledger task/verification step.
